@@ -2,7 +2,7 @@ var _ = require('lodash');
 var path = require('path');
 var webpack = require('webpack');
 
-var appNames = [ 'app' ];
+var appNames = [ 'mes' ];
 
 var dev = process.env.NODE_ENV !== 'production';
 var baseDir = __dirname;
