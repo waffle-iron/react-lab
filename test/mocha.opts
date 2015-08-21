@@ -1,0 +1,4 @@
+--require test/mocha-init
+--globals document,window,navigator
+--check-leaks
+src/**/__tests__/*-test.js

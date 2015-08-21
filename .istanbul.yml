@@ -1,0 +1,10 @@
+verbose: false
+instrumentation:
+  excludes:
+    - 'node_modules'
+    - 'bower_components'
+    - '**/__tests__/*'
+reporting:
+  reports:
+    - html
+  dir: ./dist/coverage
