@@ -4,15 +4,17 @@ import classnames from 'classnames';
 
 class TableRow extends Component {
   render() {
-    const { idx, className, ...props } = this.props;
+    const { odd, selected, className, ...props } = this.props;
     props.className = classnames(
-      (idx % 2 === 1) && 'pure-table-odd', className
+      odd && 'pure-table-odd', className,
+      selected && 'selected'
     );
     return <tr {...props} />;
   }
 }
 TableRow.propTypes = {
-  idx: PropTypes.number
+  odd: PropTypes.bool,
+  selected: PropTypes.bool
 };
 
 class Table extends Component {

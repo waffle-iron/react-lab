@@ -4,9 +4,17 @@ import Table from '../Table';
 describe('Pure', () => {
 
   describe('Table.Row', () => {
+    it('should be: <table class="pure-table"><tr class=""><td>OK</td></tr></table>', () => {
+      const h = React.renderToStaticMarkup(<Table><Table.Row><td>OK</td></Table.Row></Table>);
+      h.should.be.equal('<table class="pure-table"><tr class=""><td>OK</td></tr></table>');
+    });
     it('should be: <table class="pure-table"><tr class="pure-table-odd"><td>OK</td></tr></table>', () => {
-      const h = React.renderToStaticMarkup(<Table><Table.Row idx={1}><td>OK</td></Table.Row></Table>);
+      const h = React.renderToStaticMarkup(<Table><Table.Row odd><td>OK</td></Table.Row></Table>);
       h.should.be.equal('<table class="pure-table"><tr class="pure-table-odd"><td>OK</td></tr></table>');
+    });
+    it('should be: <table class="pure-table"><tr class="pure-table-odd selected"><td>OK</td></tr></table>', () => {
+      const h = React.renderToStaticMarkup(<Table><Table.Row odd selected><td>OK</td></Table.Row></Table>);
+      h.should.be.equal('<table class="pure-table"><tr class="pure-table-odd selected"><td>OK</td></tr></table>');
     });
   });
 
