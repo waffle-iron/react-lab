@@ -1,27 +1,27 @@
-import React, { PropTypes } from 'react/addons';
+import React, { PropTypes } from 'react';
 import { Input, Button } from 'theme/pure';
 import Component from 'PureComponent';
 
 class SpecList extends Component {
   constructor(props, context) {
     super(props, context);
-    this.state = { timeQty: props.timeQty || 0 };
+    this.state = { time: props.spec.time || 0 };
   }
   render() {
-    const { specs, timeUnit, timeLabel } = this.props;
+    const { spec, timeUnit, timeLabel } = this.props;
     return (
       <div className="spec-list">
         <div className="time">
           <Input input={`${timeLabel}[-数量]${timeUnit}`}
-            className="time-qty" value={this.state.timeQty}
+            className="time" value={this.state.time}
             onChange={::this.handleTimeChange}
             onKeyUp={::this.handleTimeKeyUp}
             onBlur={::this.handleTimeBlur} />
           <Button>...</Button>
         </div>
-        <div className="spec">
+        <div className="specs">
           <ul>
-            {specs.map((spec, idx) =>
+            {spec.specs.map((spec, idx) =>
               <li key={idx}><Input input={`[]${spec.name}`}
                 checked={spec.selected || false}
                 value={idx} onChange={::this.handleSpecToggle} /></li>
@@ -32,7 +32,7 @@ class SpecList extends Component {
     );
   }
   handleTimeChange(evt) {
-    this.setState({ timeQty: evt.target.value });
+    this.setState({ time: evt.target.value });
   }
   handleTimeKeyUp(evt) {
     if (evt.key === 'Enter') {
@@ -59,10 +59,12 @@ const specShape = PropTypes.shape({
 SpecList.propTypes = {
   onSpecToggle: PropTypes.func.isRequired,
   onTimeUpdate: PropTypes.func.isRequired,
-  specs: PropTypes.arrayOf(specShape).isRequired,
-  timeQty: PropTypes.number.isRequired,
   timeUnit: PropTypes.string.isRequired,
-  timeLabel: PropTypes.string.isRequired
+  timeLabel: PropTypes.string.isRequired,
+  spec: PropTypes.shape({
+    time: PropTypes.number.isRequired,
+    specs: PropTypes.arrayOf(specShape).isRequired,
+  }).isRequired,
 };
 
 export default SpecList;

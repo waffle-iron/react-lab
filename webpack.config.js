@@ -2,7 +2,7 @@ var _ = require('lodash');
 var path = require('path');
 var webpack = require('webpack');
 
-var appNames = [ 'mes' ];
+var appName = 'mes';
 
 var dev = process.env.NODE_ENV !== 'production';
 var baseDir = __dirname;
@@ -54,14 +54,13 @@ var config = {
 if (dev) {
   _.assign(config, {
     devtool: '#cheap-module-inline-source-map',
-    entry: appNames.reduce(function (entries, appName) {
-      entries[appName] = [
+    entry: {
+      [appName]: [
         'webpack-dev-server/client?http://localhost:3000',
         'webpack/hot/only-dev-server',
-          'src/' + appName
-      ];
-      return entries;
-    }, {})
+        'src/app/index'
+      ]
+    }
   });
   config.plugins.push(
     new webpack.HotModuleReplacementPlugin()
@@ -69,12 +68,11 @@ if (dev) {
 }
 else {
   _.assign(config, {
-    entry: appNames.reduce(function (entries, appName) {
-      entries[appName] = [
-        'src/' + appName
-      ];
-      return entries;
-    }, {})
+    entry: {
+      [appName]: [
+        'src/app/index'
+      ]
+    }
   });
   config.plugins.push(
     new webpack.optimize.UglifyJsPlugin({

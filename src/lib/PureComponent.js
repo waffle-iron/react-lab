@@ -6,7 +6,9 @@ const PureComponent = React.createClass({
     const comp = refId ? this.refs[refId] : this;
     return React.findDOMNode(comp);
   },
-  render() {}
+  render() {
+    console.warn('It is an abstract class.');
+  }
 });
 
 export default PureComponent;

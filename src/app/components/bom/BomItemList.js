@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react/addons';
+import React, { PropTypes } from 'react';
 import { Table, Editable, Button } from 'theme/pure';
 import Component from 'PureComponent';
 import classnames from 'classnames';
