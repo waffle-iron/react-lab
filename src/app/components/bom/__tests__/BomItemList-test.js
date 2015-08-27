@@ -90,7 +90,7 @@ describe('BomItemList', () => {
       onSelect={noop} onAddNew={noop} onDelete={noop} onQtyUpdate={noop} />;
     const h = React.renderToStaticMarkup(e);
     h.should.be.equal([
-      '<div class="bom-item-list">',
+      '<div class="item-list">',
       '<div class="head"><div class="title">物料</div>',
       '<div class="add"><button type="button" class="pure-button">+</button></div></div>',
       '<table class="pure-table list pure-table-striped"><thead><tr>',
@@ -104,7 +104,7 @@ describe('BomItemList', () => {
       onSelect={noop} onAddNew={noop} onDelete={noop} onQtyUpdate={noop} />;
     const h = React.renderToStaticMarkup(e);
     h.should.be.equal([
-      '<div class="bom-item-list">',
+      '<div class="item-list">',
       '<div class="head"><div class="title">物料</div>',
       '<div class="add"><button type="button" class="pure-button">+</button></div></div>',
       '<table class="pure-table list pure-table-striped"><thead><tr>',

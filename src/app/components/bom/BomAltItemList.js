@@ -37,16 +37,19 @@ class BomAltItemList extends Component {
   render() {
     const { items, onToggle } = this.props;
     return (
-      <Table className="bom-alt-list" striped={true}>
-        <thead>
-          <tr>{COL_HEADS.map((col, idx) => <th key={idx}>{col}</th>)}</tr>
-        </thead>
-        <tbody>
-          {items.map((item, idx) =>
-            <BomAltItem key={idx} item={item}
-              idx={idx} onToggle={onToggle} />)}
-        </tbody>
-      </Table>
+      <div className="item-alt-list">
+        <div className="head">可替换件</div>
+        <Table className="list" striped={true}>
+          <thead>
+            <tr>{COL_HEADS.map((col, idx) => <th key={idx}>{col}</th>)}</tr>
+          </thead>
+          <tbody>
+            {items.map((item, idx) =>
+              <BomAltItem key={idx} item={item}
+                idx={idx} onToggle={onToggle} />)}
+          </tbody>
+        </Table>
+      </div>
     );
   }
 }

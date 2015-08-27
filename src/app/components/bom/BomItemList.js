@@ -47,7 +47,7 @@ class BomItemList extends Component {
   render() {
     const { itemi, items, onAddNew, onSelect, onDelete, onQtyUpdate } = this.props;
     return (
-      <div className="bom-item-list">
+      <div className="item-list">
         <div className="head">
           <div className="title">物料</div>
           <div className="add">

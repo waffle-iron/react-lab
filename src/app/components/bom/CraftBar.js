@@ -8,7 +8,7 @@ class CraftBar extends Component {
     return (
       <div className="craft-bar">
         {procs.map((proc, idx) => {
-          const cls = classnames('proc', {
+          const cls = classnames('node proc', {
             selected: idx === proci
           });
           return (
@@ -21,7 +21,7 @@ class CraftBar extends Component {
             </div>
           );
         })}
-        <div className="craft-name">{craft}</div>
+        <div className="node craft">{craft}</div>
       </div>
     );
   }

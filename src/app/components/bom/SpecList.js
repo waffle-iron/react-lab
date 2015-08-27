@@ -11,15 +11,15 @@ class SpecList extends Component {
     const { spec, timeUnit, timeLabel } = this.props;
     return (
       <div className="spec-list">
-        <div className="time">
+        <div className="head">
           <Input input={`${timeLabel}[-数量]${timeUnit}`}
             className="time" value={this.state.time}
             onChange={::this.handleTimeChange}
             onKeyUp={::this.handleTimeKeyUp}
             onBlur={::this.handleTimeBlur} />
-          <Button>...</Button>
+          <Button ref="add">+</Button>
         </div>
-        <div className="specs">
+        <div className="list">
           <ul>
             {spec.specs.map((spec, idx) =>
               <li key={idx}><Input input={`[]${spec.name}`}

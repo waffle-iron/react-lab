@@ -19,10 +19,10 @@ describe('SpecList', () => {
       onSpecToggle={noop} onTimeUpdate={noop} />;
     const h = React.renderToStaticMarkup(e);
     h.should.be.equal([
-      '<div class="spec-list"><div class="time">',
+      '<div class="spec-list"><div class="head">',
       '<label>设备占用<input type="text" placeholder="数量" value="1.5" class="time">H</label>',
-      '<button type="button" class="pure-button">...</button></div>',
-      '<div class="specs"><ul>',
+      '<button type="button" class="pure-button">+</button></div>',
+      '<div class="list"><ul>',
       '<li><label><input type="checkbox" checked value="0">烧录设备</label></li>',
       '<li><label><input type="checkbox" value="1">老化设备</label></li>',
       '<li><label><input type="checkbox" checked value="2">测试设备</label></li>',

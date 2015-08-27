@@ -35,12 +35,16 @@ class Bom extends Component {
           </Cell>
           <Cell size="1/3">
             <div>
-              <SpecList size="1/2" spec={specs.device} timeLabel="设备占用" timeUnit="H"
-                onTimeUpdate={qty => console.log('SpecList.onTimeUpdate', 'device', qty)}
-                onSpecToggle={idx => console.log('SpecList.onSpecToggle', 'device', idx)} />
-              <SpecList size="1/2" spec={specs.worker} timeLabel="需要人工" timeUnit="H"
-                onTimeUpdate={qty => console.log('SpecList.onTimeUpdate', 'worker', qty)}
-                onSpecToggle={idx => console.log('SpecList.onSpecToggle', 'worker', idx)} />
+              <Cell size="1/2">
+                <SpecList spec={specs.device} timeLabel="设备占用" timeUnit="H"
+                  onTimeUpdate={qty => console.log('SpecList.onTimeUpdate', 'device', qty)}
+                  onSpecToggle={idx => console.log('SpecList.onSpecToggle', 'device', idx)} />
+              </Cell>
+              <Cell size="1/2">
+                <SpecList spec={specs.worker} timeLabel="需要人工" timeUnit="H"
+                  onTimeUpdate={qty => console.log('SpecList.onTimeUpdate', 'worker', qty)}
+                  onSpecToggle={idx => console.log('SpecList.onSpecToggle', 'worker', idx)} />
+              </Cell>
             </div>
             <div className="more" />
           </Cell>
