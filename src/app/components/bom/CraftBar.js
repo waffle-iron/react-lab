@@ -1,41 +1,39 @@
 import React, { PropTypes } from 'react';
 import Component from 'PureComponent';
+import classnames from 'classnames';
 
 class CraftBar extends Component {
   render() {
-    const { craft, value, onProcSelected } = this.props;
+    const { craft, proci, procs, onProcSelect } = this.props;
     return (
       <div className="craft-bar">
-        {craft.procs.map((proc, idx) => {
-          const cls = proc.id === value ? 'proc selected' : 'proc';
+        {procs.map((proc, idx) => {
+          const cls = classnames('proc', {
+            selected: idx === proci
+          });
           return (
             <div key={idx}>
               <div className={cls}
-                onClick={onProcSelected(proc.id)}>
+                onClick={() => onProcSelect(idx)}>
                 {proc.name}
               </div>
               <div className="line" />
             </div>
           );
         })}
-        <div className="craft-end">{craft.name}</div>
+        <div className="craft-name">{craft}</div>
       </div>
     );
   }
 }
-const procShape = PropTypes.shape({
-  id: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired
-});
-const craftShape = PropTypes.shape({
-  id: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  procs: PropTypes.arrayOf(procShape).isRequired
-});
 CraftBar.propTypes = {
-  onProcSelected: PropTypes.func.isRequired,
-  craft: craftShape.isRequired,
-  value: PropTypes.string.isRequired // selected proc id
+  onProcSelect: PropTypes.func.isRequired,
+  craft: PropTypes.string.isRequired,
+  proci: PropTypes.number.isRequired,
+  procs: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired
+  })).isRequired
 };
 
 export default CraftBar;

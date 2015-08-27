@@ -2,7 +2,7 @@ import _ from "lodash";
 import { combineReducers } from 'redux';
 import * as Actions from './bomActions';
 
-function bomUI(state = { itemAdding: false }, action) {
+function ui(state = { itemAdding: false }, action) {
   switch (action.type) {
   case Actions.ITEM_ADD:
     return { itemAdding: true };
@@ -164,7 +164,7 @@ function itemsFound(state = [], action) {
 }
 
 const storeStateReducer = combineReducers({
-  bomUI, itemsFound, navis,
+  ui, itemsFound,
   proci, procs, itemi, items, altItems,
   deviceTime, deviceSpecs,
   workerTime, workerSpecs,

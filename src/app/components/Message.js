@@ -12,7 +12,7 @@ class Message extends Component {
     );
   }
 }
-Message.PropTypes = {
+Message.propTypes = {
   message: PropTypes.string.isRequired
 };
 

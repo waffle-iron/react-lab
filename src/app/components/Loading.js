@@ -12,7 +12,7 @@ class Loading extends Component {
     );
   }
 }
-Loading.PropTypes = {
+Loading.propTypes = {
   loading: PropTypes.number.isRequired
 };
 

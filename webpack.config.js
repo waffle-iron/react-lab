@@ -2,7 +2,9 @@ var _ = require('lodash');
 var path = require('path');
 var webpack = require('webpack');
 
-var appName = 'mes';
+var entries = {
+  'mes': './src/app/index'
+};
 
 var dev = process.env.NODE_ENV !== 'production';
 var baseDir = __dirname;
@@ -20,7 +22,7 @@ var config = {
   resolve: {
     root: [bowerDir],
     extensions: ['', '.js', '.jsx'],
-    modulesDirectories: ['base', 'node_modules']
+    modulesDirectories: ['src/lib', 'node_modules']
   },
   plugins: [
     new webpack.DefinePlugin({ __DEVTOOLS__: dev }),
@@ -32,7 +34,7 @@ var config = {
   ],
   module: {
     loaders: [{
-      test: /\.jsx?$/,
+      test: /\.js$/,
       loaders: ['react-hot', 'babel'],
       exclude: ignoreDir,
     }, {
@@ -54,13 +56,14 @@ var config = {
 if (dev) {
   _.assign(config, {
     devtool: '#cheap-module-inline-source-map',
-    entry: {
-      [appName]: [
+    entry: Object.keys(entries).reduce(function (settings, key) {
+      settings[key] = [
         'webpack-dev-server/client?http://localhost:3000',
         'webpack/hot/only-dev-server',
-        'src/app/index'
-      ]
-    }
+        entries[key]
+      ];
+      return settings;
+    }, {})
   });
   config.plugins.push(
     new webpack.HotModuleReplacementPlugin()
@@ -68,11 +71,11 @@ if (dev) {
 }
 else {
   _.assign(config, {
-    entry: {
-      [appName]: [
-        'src/app/index'
-      ]
-    }
+    // devtool: '#inline-source-map',
+    entry: Object.keys(entries).reduce(function (settings, key) {
+      settings[key] = [entries[key]];
+      return settings;
+    }, {})
   });
   config.plugins.push(
     new webpack.optimize.UglifyJsPlugin({

@@ -5,7 +5,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Loading from '../components/Loading';
 
-import Bom from './bom/bom';
+import Bom from './bom/bom.render-only';
 
 import { connect } from 'react-redux';
 import appStateSelector from './appSelector';

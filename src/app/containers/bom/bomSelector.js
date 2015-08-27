@@ -1,8 +1,8 @@
 import { createSelector } from 'reselect';
 
-const viewStateSelector = storeState => {
+const appStateSelector = storeState => {
   return {
-    backEnd: storeState.backEnd, frontEnd: storeState.frontEnd,
+    ui: storeState.ui,
     navis: storeState.navis,
     proci: storeState.proci, procs: storeState.procs,
     itemi: storeState.itemi, items: storeState.items,
@@ -14,4 +14,4 @@ const viewStateSelector = storeState => {
   };
 }
 
-export default viewStateSelector;
+export default appStateSelector;

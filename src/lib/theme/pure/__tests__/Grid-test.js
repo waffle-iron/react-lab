@@ -4,6 +4,10 @@ import { Grid, Cell } from '../Pure';
 describe('Pure', () => {
 
   describe('Cell', () => {
+    it('should be: <div class="pure-u">OK</div>', () => {
+      const h = React.renderToStaticMarkup(<Cell auto>OK</Cell>);
+      h.should.be.equal('<div class="pure-u">OK</div>');
+    });
     it('should be: <div class="pure-u-1-3">OK</div>', () => {
       const h = React.renderToStaticMarkup(<Cell size="1/3">OK</Cell>);
       h.should.be.equal('<div class="pure-u-1-3">OK</div>');

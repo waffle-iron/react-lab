@@ -52,10 +52,7 @@ class SpecList extends Component {
     this.props.onSpecToggle(evt.target.value);
   }
 }
-const specShape = PropTypes.shape({
-  name: PropTypes.string.isRequired,
-  selected: PropTypes.bool
-});
+
 SpecList.propTypes = {
   onSpecToggle: PropTypes.func.isRequired,
   onTimeUpdate: PropTypes.func.isRequired,
@@ -63,7 +60,10 @@ SpecList.propTypes = {
   timeLabel: PropTypes.string.isRequired,
   spec: PropTypes.shape({
     time: PropTypes.number.isRequired,
-    specs: PropTypes.arrayOf(specShape).isRequired,
+    specs: PropTypes.arrayOf(PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      selected: PropTypes.bool
+    })).isRequired,
   }).isRequired,
 };
 

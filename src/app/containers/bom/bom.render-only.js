@@ -15,39 +15,32 @@ import Actions from './bomActions';
 class Bom extends Component {
   render() {
     const {
-      dispatch, ui, proci, procs,
-      itemi, items, altItems, specs
+      dispatch, ui,
+      proci, procs, itemi, items,
+      altItems, specs
     } = this.props;
     return (
       <div className="bom">
-        <CraftBar craft="电子组装" proci={proci} procs={procs} onProcSelect={idx => {
-          if (idx !== proci) {
-            (itemi !== -1) && _.assign(items[itemi], { altItems });
-            (proci !== -1) && _.assign(procs[proci], { items, specs });
-            dispatch(Actions.procSelect(idx, procs[idx]));
-          }
-        }} />
+        <CraftBar craft="电子组装" proci={proci} procs={procs}
+          onProcSelect={idx => console.log('CraftBar.onProcSelect', idx)} />
         <Grid>
           <Cell size="2/3">
             <BomItemList itemi={itemi} items={items}
-              onAddNew={idx => dispatch(Actions.itemAdd())}
-              onSelect={idx => {
-                (itemi !== -1) && _.assign(items[itemi], { altItems });
-                dispatch(Actions.itemSelect(idx, items[idx]));
-              }}
-              onDelete={idx => dispatch(Actions.itemDelete(idx))}
-              onQtyUpdate={(idx, qty) => dispatch(Actions.itemQtyUpdate(idx, qty))} />
+              onAddNew={() => console.log('BomItemList.onAddNew')}
+              onSelect={idx => console.log('BomItemList.onSelect', idx)}
+              onDelete={idx => console.log('BomItemList.onDelete', idx)}
+              onQtyUpdate={(idx, qty) => console.log('BomItemList.onQtyUpdate', idx, qty)} />
             <BomAltItemList items={altItems}
-              onToggle={idx => dispatch(Actions.itemAltToggle(idx))} />
+              onToggle={idx => console.log('BomAltItemList.onToggle', idx)} />
           </Cell>
           <Cell size="1/3">
             <div>
               <SpecList size="1/2" spec={specs.device} timeLabel="设备占用" timeUnit="H"
-                onTimeUpdate={qty => dispatch(Actions.deviceTimeUpdate(qty))}
-                onSpecToggle={idx => dispatch(Actions.deviceSpecToggle(idx))} />
+                onTimeUpdate={qty => console.log('SpecList.onTimeUpdate', 'device', qty)}
+                onSpecToggle={idx => console.log('SpecList.onSpecToggle', 'device', idx)} />
               <SpecList size="1/2" spec={specs.worker} timeLabel="需要人工" timeUnit="H"
-                onTimeUpdate={qty => dispatch(Actions.workerTimeUpdate(qty))}
-                onSpecToggle={idx => dispatch(Actions.workerSpecToggle(idx))} />
+                onTimeUpdate={qty => console.log('SpecList.onTimeUpdate', 'worker', qty)}
+                onSpecToggle={idx => console.log('SpecList.onSpecToggle', 'worker', idx)} />
             </div>
             <div className="more" />
           </Cell>
@@ -57,6 +50,7 @@ class Bom extends Component {
   }
 }
 Bom.propTypes = {
+  ui: PropTypes.object.isRequired,
   proci: CraftBar.propTypes.proci,
   procs: CraftBar.propTypes.procs,
   itemi: BomItemList.propTypes.itemi,

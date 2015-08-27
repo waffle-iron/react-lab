@@ -4,10 +4,10 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { createStore, createDebugPanel } from 'createStore';
 
-import App from './containers/App';
-import reducer from './containers/reducers';
+import App from './containers/app.render-only';
+import storeStateReducer from './containers/appReducer';
 
-const store = createStore(reducer);
+const store = createStore(storeStateReducer);
 
 React.render(
   <div>

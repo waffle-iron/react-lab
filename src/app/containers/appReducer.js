@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import * as Actions from './appActions';
 
 // 异步请求状态
 function req(state = { loading: 0 }, action) {
@@ -28,7 +29,7 @@ function navis(state = [], action) {
 
 const storeStateReducer = combineReducers({
   req, navis,
-  bom: require('./bom/bomReducers')
+  bom: require('./bom/bomReducer')
 });
 
 export default storeStateReducer;

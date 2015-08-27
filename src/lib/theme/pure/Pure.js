@@ -9,16 +9,21 @@ const _normalizeSize = (s = '') => s.toString().replace('/', '-');
 const _cssShowOrHide = (show) => !show ? void 0 : 'display: block; padding-left: 0;';
 
 export
-function reduceSizeProps(props, prefix = 'pure-u-') {
-  const { size, sm, md, lg, xl, className, ...ps } = props;
-  ps.className = classnames(
-    size && prefix + _normalizeSize(size),
-    sm && prefix + 'sm-' + _normalizeSize(sm),
-    md && prefix + 'md-' + _normalizeSize(md),
-    lg && prefix + 'lg-' + _normalizeSize(lg),
-    xl && prefix + 'xl-' + _normalizeSize(xl),
-    className
-  );
+function reduceSizeProps(props, prefix = 'pure-u') {
+  const { auto, size, sm, md, lg, xl, className, ...ps } = props;
+  if (auto) {
+    ps.className = classnames(prefix, className);
+  }
+  else {
+    ps.className = classnames(
+      size && prefix + '-' + _normalizeSize(size),
+      sm && prefix + '-sm-' + _normalizeSize(sm),
+      md && prefix + '-md-' + _normalizeSize(md),
+      lg && prefix + '-lg-' + _normalizeSize(lg),
+      xl && prefix + '-xl-' + _normalizeSize(xl),
+      className
+    );
+  }
   return ps;
 }
 
@@ -39,6 +44,7 @@ class Cell extends Component {
   }
 }
 Cell.propTypes = {
+  auto: PropTypes.bool,
   size: PropTypes.string.isRequired,
   sm: PropTypes.string,
   md: PropTypes.string,

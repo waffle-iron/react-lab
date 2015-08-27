@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import { Table, Editable, Button } from 'theme/pure';
+import { Table, Editable, Button, Pure } from 'theme/pure';
 import Component from 'PureComponent';
 import classnames from 'classnames';
 
@@ -8,10 +8,10 @@ const COL_HEADS = '分类|编号|名称|主辅|供应商|消耗单位|数量|属
 export
 class BomItem extends Component {
   render() {
-    const { item, idx, selected } = this.props;
+    const { item, odd, selected, onSelect, onDelete } = this.props;
     return (
-      <Table.Row odd={idx % 2 === 1} selected={idx === selected}
-        onClick={::this.handleSelect}>
+      <Table.Row odd={odd} selected={selected}
+        onClick={onSelect}>
         <td>{item.id}</td>
         <td>{item.code}</td>
         <td>{item.name}</td>
@@ -24,44 +24,35 @@ class BomItem extends Component {
         </td>
         <td>{item.misc}</td>
         <td>
-          <Button ref="del" onClick={::this.handleDelete}>x</Button>
+          <Button ref="del" onClick={onDelete}>x</Button>
         </td>
       </Table.Row>
     );
   }
-  handleSelect() {
-    const { idx, onSelect } = this.props;
-    onSelect(idx);
-  }
-  handleDelete() {
-    const { idx, onDelete } = this.props;
-    onDelete(idx);
-  }
   handleQtyUpdate(qty) {
-    const { idx, onQtyUpdate } = this.props;
-    onQtyUpdate(idx, parseFloat(qty));
+    const { onQtyUpdate } = this.props;
+    onQtyUpdate(parseFloat(qty));
   }
 }
 BomItem.propTypes = {
   item: PropTypes.object.isRequired,
-  idx: PropTypes.number.isRequired,
-  selected: PropTypes.number,
+  odd: PropTypes.bool,
+  selected: PropTypes.bool,
   onSelect: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
   onQtyUpdate: PropTypes.func.isRequired
 };
-BomItem.defaultProps = {
-  selected: -1
-};
 
 class BomItemList extends Component {
   render() {
-    const { items, idx, selected, onAddNew, onSelect, onDelete, onQtyUpdate } = this.props;
+    const { itemi, items, onAddNew, onSelect, onDelete, onQtyUpdate } = this.props;
     return (
       <div className="bom-item-list">
         <div className="head">
           <div className="title">物料</div>
-          <div className="add"><Button ref="add" onClick={onAddNew}>+</Button></div>
+          <div className="add">
+            <Button ref="add" onClick={onAddNew}>+</Button>
+          </div>
         </div>
         <Table className="list" striped={true}>
           <thead>
@@ -69,9 +60,11 @@ class BomItemList extends Component {
           </thead>
           <tbody>
             {items.map((item, idx) =>
-              <BomItem key={idx} item={item} idx={idx}
-                selected={selected} onSelect={onSelect}
-                onDelete={onDelete} onQtyUpdate={onQtyUpdate} />)}
+              <BomItem key={idx} item={item}
+                odd={idx % 2 === 1} selected={idx === itemi}
+                onSelect={() => onSelect(idx)}
+                onDelete={() => onDelete(idx)}
+                onQtyUpdate={qty => onQtyUpdate(idx, qty)} />)}
           </tbody>
         </Table>
       </div>
@@ -79,15 +72,12 @@ class BomItemList extends Component {
   }
 }
 BomItemList.propTypes = {
+  itemi: PropTypes.number.isRequired,
   items: PropTypes.arrayOf(PropTypes.object).isRequired,
-  selected: PropTypes.number,
   onAddNew: PropTypes.func.isRequired,
   onSelect: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
   onQtyUpdate: PropTypes.func.isRequired
-};
-BomItemList.defaultProps = {
-  selected: -1
 };
 
 export default BomItemList;
