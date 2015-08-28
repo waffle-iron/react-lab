@@ -130,7 +130,7 @@ function workerTime(state = 0, action) {
   switch (action.type) {
   case Actions.PROC_SELECT:
     return action.proc.time.device;
-  case Actions.DEVICE_TIME_UPDATE:
+  case Actions.WORKER_TIME_UPDATE:
     return action.qty;
   default:
     return state;

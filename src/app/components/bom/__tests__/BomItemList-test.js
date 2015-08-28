@@ -27,7 +27,7 @@ describe('BomItem', () => {
     h.should.be.equal([
       '<tr class=""><td>1001</td><td>MBD-A1</td><td>A1型主板</td><td>主</td><td>I</td>',
       '<td>p</td><td class="number"><div>1.1</div></td><td>USB2</td>',
-      '<td><button type="button" class="pure-button">x</button></td></tr>',
+      '<td><i class="fa fa-close"></i></td></tr>',
     ].join(''));
   });
   it('should render an odd and selected row', () => {
@@ -39,7 +39,7 @@ describe('BomItem', () => {
     h.should.be.equal([
       '<tr class="pure-table-odd selected"><td>1002</td><td>MBD-A2</td><td>A2型主板</td><td>主</td><td>I</td>',
       '<td>p</td><td class="number"><div>1.2</div></td><td>USB2/WiFi</td>',
-      '<td><button type="button" class="pure-button">x</button></td></tr>',
+      '<td><i class="fa fa-close"></i></td></tr>',
     ].join(''));
   });
 
@@ -92,7 +92,7 @@ describe('BomItemList', () => {
     h.should.be.equal([
       '<div class="item-list">',
       '<div class="head"><div class="title">物料</div>',
-      '<div class="add"><button type="button" class="pure-button">+</button></div></div>',
+      '<div class="add"><i class="fa fa-plus"></i></div></div>',
       '<table class="pure-table list pure-table-striped"><thead><tr>',
       '<th>分类</th><th>编号</th><th>名称</th><th>主辅</th><th>供应商</th>',
       '<th>消耗单位</th><th>数量</th><th>属性</th><th>删除</th></tr></thead><tbody>',
@@ -106,16 +106,16 @@ describe('BomItemList', () => {
     h.should.be.equal([
       '<div class="item-list">',
       '<div class="head"><div class="title">物料</div>',
-      '<div class="add"><button type="button" class="pure-button">+</button></div></div>',
+      '<div class="add"><i class="fa fa-plus"></i></div></div>',
       '<table class="pure-table list pure-table-striped"><thead><tr>',
       '<th>分类</th><th>编号</th><th>名称</th><th>主辅</th><th>供应商</th>',
       '<th>消耗单位</th><th>数量</th><th>属性</th><th>删除</th></tr></thead><tbody>',
       '<tr class=""><td>1001</td><td>MBD-A1</td><td>A1型主板</td><td>主</td><td>I</td>',
       '<td>p</td><td class="number"><div>1.1</div></td><td>USB2</td>',
-      '<td><button type="button" class="pure-button">x</button></td></tr>',
+      '<td><i class="fa fa-close"></i></td></tr>',
       '<tr class="pure-table-odd selected"><td>1002</td><td>MBD-A2</td><td>A2型主板</td><td>主</td><td>I</td>',
       '<td>p</td><td class="number"><div>1.2</div></td><td>USB2/WiFi</td>',
-      '<td><button type="button" class="pure-button">x</button></td></tr>',
+      '<td><i class="fa fa-close"></i></td></tr>',
       '</tbody></table></div>',
     ].join(''));
   });
@@ -126,9 +126,8 @@ describe('BomItemList', () => {
 
     const e = <BomItemList itemi={1} items={_items.slice(0, 2)}
       onSelect={noop} onAddNew={_handleAddNew} onDelete={noop} onQtyUpdate={noop} />;
-    const c = TestUtils.renderIntoDocument(e)
-    const addNode = c.refs.add.node();
-    TestUtils.Simulate.click(addNode);
+    const c = TestUtils.renderIntoDocument(e);
+    TestUtils.Simulate.click(c.node('add'));
     _add.should.be.true;
   });
 

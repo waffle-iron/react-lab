@@ -12,11 +12,12 @@ import appStateSelector from './appSelector';
 
 class App extends Component {
   render() {
-    const { dispatch, req, navis, bom } = this.props;
+    const { renderOnly, dispatch, req, navis, bom } = this.props;
+    const _dispatch = renderOnly ? null : dispatch;
     return (
       <div>
         <Header navis={navis} />
-        <Bom dispatch={dispatch} {...bom} />
+        <Bom dispatch={_dispatch} {...bom} />
         <Footer />
         <Loading loading={req.loading} />
       </div>

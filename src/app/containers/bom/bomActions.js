@@ -1,10 +1,10 @@
-import _ from "lodash";
-import Promise from "bluebird";
+import _ from 'lodash';
+import Promise from 'bluebird';
 
 /*
  * action types (async)
  */
- 
+
 export const ITEM_SEARCH_REQ = 'ITEM_SEARCH_REQ';
 export const ITEM_SEARCH_END = 'ITEM_SEARCH_END';
 

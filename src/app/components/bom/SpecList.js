@@ -5,7 +5,7 @@ import Component from 'PureComponent';
 class SpecList extends Component {
   constructor(props, context) {
     super(props, context);
-    this.state = { time: props.spec.time || 0 };
+    this.state = { time: props.spec.time };
   }
   render() {
     const { spec, timeUnit, timeLabel } = this.props;
@@ -23,33 +23,44 @@ class SpecList extends Component {
           <ul>
             {spec.specs.map((spec, idx) =>
               <li key={idx}><Input input={`[]${spec.name}`}
-                checked={spec.selected || false}
-                value={idx} onChange={::this.handleSpecToggle} /></li>
+                value={idx} checked={spec.selected || false}
+                onChange={::this.handleSpecToggle} /></li>
             )}
           </ul>
         </div>
       </div>
     );
   }
+  
   handleTimeChange(evt) {
     this.setState({ time: evt.target.value });
   }
   handleTimeKeyUp(evt) {
     if (evt.key === 'Enter') {
-      this.handleTimeUpdate(evt.target.value);
+      this._submit(evt.target.value);
     }
     else if (evt.key === 'Escape') {
-      evt.target.value = this.props.timeQty || 0;
+      this._cancel();
     }
   }
   handleTimeBlur(evt) {
-    this.handleTimeUpdate(evt.target.value);
-  }
-  handleTimeUpdate(input) {
-    this.props.onTimeUpdate(parseFloat(input));
+    this._submit(evt.target.value);
   }
   handleSpecToggle(evt) {
     this.props.onSpecToggle(evt.target.value);
+  }
+
+  _submit(input) {
+    const val = parseFloat(input);
+    if (isNaN(val)) {
+      this._cancel();
+    }
+    else if (val !== this.props.spec.time) {
+      this.props.onTimeUpdate(val);
+    }
+  }
+  _cancel() {
+    this.setState({ time: this.props.spec.time });
   }
 }
 
