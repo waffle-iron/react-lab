@@ -24,7 +24,7 @@ class BomItem extends Component {
         </td>
         <td>{item.misc}</td>
         <td>
-          <Button ref="del" onClick={onDelete}>x</Button>
+          <i className="fa fa-close" ref="del" onClick={onDelete} />
         </td>
       </Table.Row>
     );
@@ -51,7 +51,7 @@ class BomItemList extends Component {
         <div className="head">
           <div className="title">物料</div>
           <div className="add">
-            <Button ref="add" onClick={onAddNew}>+</Button>
+            <i className="fa fa-plus" ref="add" onClick={onAddNew} />
           </div>
         </div>
         <Table className="list" striped={true}>

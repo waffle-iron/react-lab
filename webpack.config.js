@@ -39,16 +39,13 @@ var config = {
       exclude: ignoreDir,
     }, {
       test: /\.css$/,
-      loaders: ['style', 'css'],
-      exclude: ignoreDir,
+      loaders: ['style', 'css']
     }, {
       test: /\.less$/,
-      loaders: ['style', 'css', 'less'],
-      exclude: ignoreDir,
+      loaders: ['style', 'css', 'less']
     }, {
-      test: /\.(png|jpe?g|gif)$/,
-      loaders: ['file'],
-      exclude: ignoreDir,
+      test: /\.(png|jpe?g|gif|svg|eot|ttf|otf|woff2?)/,
+      loaders: ['file']
     }]
   }
 };

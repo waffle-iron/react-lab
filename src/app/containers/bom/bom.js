@@ -1,5 +1,3 @@
-import "./bom.less";
-
 import _ from "lodash";
 import React, { PropTypes } from 'react';
 import Component from 'PureComponent';

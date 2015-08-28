@@ -1,6 +1,3 @@
-process.env.NODE_ENV !== 'test' && require('!style!css!pure');
-import './Pure.less';
-
 import React, { PropTypes } from 'react/addons';
 import Component from 'PureComponent';
 import classnames from 'classnames';

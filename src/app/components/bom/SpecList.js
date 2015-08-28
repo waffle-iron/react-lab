@@ -17,7 +17,7 @@ class SpecList extends Component {
             onChange={::this.handleTimeChange}
             onKeyUp={::this.handleTimeKeyUp}
             onBlur={::this.handleTimeBlur} />
-          <Button ref="add">+</Button>
+          <i className="fa fa-plus" />
         </div>
         <div className="list">
           <ul>

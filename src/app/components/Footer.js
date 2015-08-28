@@ -3,7 +3,7 @@ import Component from 'PureComponent';
 
 class Header extends Component {
   render() {
-    return <div className="footer">&copy; 2015–2015 Zenith China Inc.</div>
+    return <div className="footer">&copy; {(new Date()).getFullYear()} Zenith China Inc.</div>
   }
 }
 

@@ -1,0 +1,29 @@
+@import "common";
+@import "bom/bom";
+
+#root {
+  /* mainboard */
+  background-color: lighten(@base-color, 40%);
+  width: @w-app;
+  margin: @h-gap;
+  padding: 0 @w-gap;
+
+  /* text */
+  font-family: arial,sans-serif,simsun;
+  font-size: .75rem;
+  color: darken(@base-color, 30%);
+
+  /* header & footer */
+  @border: 1px solid lighten(@base-color, 30%);
+  .header {
+    border-bottom: @border;
+    margin-bottom: @h-gap;
+    padding: .5rem 0;
+  }
+  .footer {
+    margin-top: @h-gap;
+    border-top: @border;
+    text-align: right;
+    padding: .5rem 0;
+  }
+}

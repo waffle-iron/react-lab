@@ -1,24 +1,57 @@
-.bom {
-  font-size: .75rem;
-  margin: .2rem 0;
+@import "../common";
 
-  button {
-    background-color: lighten(yellow, 35%);
+@h-craft-bar: 60px;
+@h-item-list: 200px;
+@h-item-alt-list: @h-item-list;
+@h-spec-list: 250px;
+@h-more: 121px;
+
+@craft-node-color: lighten(@node-color, 35%);
+@panel-text-color: darken(@base-color, 35%);
+@panel-head-color: lighten(@base-color, 35%);
+@panel-list-color: lighten(@base-color, 45%);
+
+.head() {
+  background-color: @panel-head-color;
+  color: @panel-text-color;
+
+  padding: .5rem;
+  position: relative;
+}
+
+.head-icon() {
+  i {
+    cursor: pointer;
+    padding: 1px 2px;
+    color: darken(@base-color, 30%);
+
+    position: absolute;
+    top: 7px; right: 6px;
   }
+  i:hover {
+    border: 1px dotted darken(@base-color, 40%);
+
+    top: 6px; right: 5px;
+  }
+}
+
+.bom {
+  margin: .2rem 0;
+  font-size: .75rem;
 
   .craft-bar {
+    background-color: @panel-head-color;
     position: relative;
-    height: 4rem;
-    margin: .5rem 0;
-    background-color: lighten(blue, 45%);
+    margin: @h-gap 0;
+    height: @h-craft-bar;
 
     .node {
+      background-color: @craft-node-color;
       display: inline-block;
       position: absolute;
       margin: .5rem;
       padding: 1rem;
       border: 1px solid gray;
-      background-color: lighten(yellow, 35%);
 
       &.selected {
       }
@@ -30,57 +63,44 @@
   }
 
   .item-list {
-    border: 1px solid black;
-    height: 10rem;
-    margin-bottom: .5rem;
+    background-color: @panel-list-color;
+    height: @h-item-list;
+    margin-bottom: @h-gap;
 
     .head {
-      position: relative;
-      padding: .5rem;
-
+      .head;
       .title {
+        display: inline-block;
         font-weight: bold;
-        display: inline-block;
       }
-      .add {
-        display: inline-block;
-        position: absolute;
-        top: .1rem; right: .2rem;
-      }
-
+      .head-icon;
     }
     .list {
       width: 100%;
       overflow: auto;
-
     }
   }
+
   .item-alt-list {
-    border: 1px solid black;
-    height: 10rem;
+    background-color: @panel-list-color;
+    height: @h-item-alt-list;
 
     .head {
-      font-weight: bold;
-      position: relative;
-      padding: .5rem;
+      .head;
     }
     .list {
+      background-color: @panel-list-color;
       width: 100%;
       overflow: auto;
-
     }
   }
 
   .spec-list {
-    background-color: lighten(blue, %20);
-    margin: .2rem;
-    height: 15rem;
+    margin-left: @w-gap;
+    margin-bottom: @h-gap;
 
     .head {
-      font-weight: bold;
-      position: relative;
-      padding: .5rem;
-
+      .head;
       input {
         position: absolute; top: .3rem;
         width: 4em; margin-left: .2rem;
@@ -89,22 +109,19 @@
       span:last-child {
         position: absolute; right: 2.5rem;
       }
-      button {
-        position: absolute;
-        top: .1rem; right: .2rem;
-      }
+      .head-icon;
     }
     .list {
-      border: 1px solid black;
-      height: 13rem;
+      background-color: @panel-list-color;
+      height: @h-spec-list;
       overflow: auto;
     }
   }
 
   .more {
-    border: 1px solid black;
-    margin: 0 .2rem;
-    height: 5.2rem;
+    background-color: @panel-head-color;
+    margin-left: @w-gap;
+    height: @h-more;
     overflow: auto;
   }
 
