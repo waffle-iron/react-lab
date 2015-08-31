@@ -1,8 +1,7 @@
 @import "../common";
 
 @h-craft-bar: 60px;
-@h-item-list: 200px;
-@h-item-alt-list: @h-item-list;
+@h-item-list: 193px;
 @h-spec-list: 250px;
 @h-more: 121px;
 
@@ -36,21 +35,20 @@
 }
 
 .bom {
-  margin: .2rem 0;
   font-size: .75rem;
 
   .craft-bar {
     background-color: @panel-head-color;
     position: relative;
     margin: @h-gap 0;
-    height: @h-craft-bar;
+    height: @h-gap*8;
 
     .node {
       background-color: @craft-node-color;
       display: inline-block;
       position: absolute;
-      margin: .5rem;
-      padding: 1rem;
+      margin: @h-gap @w-gap;
+      padding: @h-gap*2 @w-gap*2;
       border: 1px solid gray;
 
       &.selected {
@@ -59,39 +57,37 @@
       &.craft {
         right: 0;
       }
+
+      >i {
+        position: absolute;
+        top: 18px; left: 63px;
+      }
     }
   }
 
-  .item-list {
+  .item-list,.item-alt-list {
     background-color: @panel-list-color;
-    height: @h-item-list;
+
+    >.head {
+      .head;
+    }
+    >.list {
+      height: @h-item-list;
+      overflow: auto;
+      >table {
+        width: 100%;
+      }
+    }
+  }
+  .item-list {
     margin-bottom: @h-gap;
 
-    .head {
-      .head;
+    >.head {
       .title {
         display: inline-block;
         font-weight: bold;
       }
       .head-icon;
-    }
-    .list {
-      width: 100%;
-      overflow: auto;
-    }
-  }
-
-  .item-alt-list {
-    background-color: @panel-list-color;
-    height: @h-item-alt-list;
-
-    .head {
-      .head;
-    }
-    .list {
-      background-color: @panel-list-color;
-      width: 100%;
-      overflow: auto;
     }
   }
 

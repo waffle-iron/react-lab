@@ -3,9 +3,9 @@ import Component from 'PureComponent';
 
 class Header extends Component {
   render() {
-    const { navis } = this.props;
-    if (navis.length > 0) {
-      const history = [...navis];
+    const { nav } = this.props;
+    if (nav.length > 0) {
+      const history = [...nav];
       const current = history.pop();
       return (
         <div className="header">
@@ -25,7 +25,7 @@ class Header extends Component {
   }
 }
 Header.propTypes = {
-  navis: PropTypes.arrayOf(PropTypes.shape({
+  nav: PropTypes.arrayOf(PropTypes.shape({
     url: PropTypes.string,
     txt: PropTypes.string
   })).isRequired

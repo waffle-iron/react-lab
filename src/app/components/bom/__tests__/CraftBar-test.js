@@ -16,11 +16,11 @@ describe('CraftBar', () => {
     const h = React.renderToStaticMarkup(e);
     h.should.be.equal([
       '<div class="craft-bar">',
-      '<div><div class="node proc">烧录</div><div class="line"></div></div>',
-      '<div><div class="node proc selected">组装</div><div class="line"></div></div>',
-      '<div><div class="node proc">老化</div><div class="line"></div></div>',
-      '<div><div class="node proc">测试</div><div class="line"></div></div>',
-      '<div><div class="node proc">包装</div><div class="line"></div></div>',
+      '<div class="node" style="left:0px;">烧录<i class="fa fa-arrow-right"></i></div>',
+      '<div class="node selected" style="left:80px;">组装<i class="fa fa-arrow-right"></i></div>',
+      '<div class="node" style="left:160px;">老化<i class="fa fa-arrow-right"></i></div>',
+      '<div class="node" style="left:240px;">测试<i class="fa fa-arrow-right"></i></div>',
+      '<div class="node" style="left:320px;">包装<i class="fa fa-arrow-right"></i></div>',
       '<div class="node craft">电子组装</div></div>'
     ].join(''));
   });

@@ -54,19 +54,21 @@ class BomItemList extends Component {
             <i className="fa fa-plus" ref="add" onClick={onAddNew} />
           </div>
         </div>
-        <Table className="list" striped={true}>
-          <thead>
-            <tr>{COL_HEADS.map((col, idx) => <th key={idx}>{col}</th>)}</tr>
-          </thead>
-          <tbody>
-            {items.map((item, idx) =>
-              <BomItem key={idx} item={item}
-                odd={idx % 2 === 1} selected={idx === itemi}
-                onSelect={() => onSelect(idx)}
-                onDelete={() => onDelete(idx)}
-                onQtyUpdate={qty => onQtyUpdate(idx, qty)} />)}
-          </tbody>
-        </Table>
+        <div className="list">
+          <Table striped={true}>
+            <thead>
+              <tr>{COL_HEADS.map((col, idx) => <th key={idx}>{col}</th>)}</tr>
+            </thead>
+            <tbody>
+              {items.map((item, idx) =>
+                <BomItem key={idx} item={item}
+                  odd={idx % 2 === 1} selected={idx === itemi}
+                  onSelect={() => onSelect(idx)}
+                  onDelete={() => onDelete(idx)}
+                  onQtyUpdate={qty => onQtyUpdate(idx, qty)} />)}
+            </tbody>
+          </Table>
+        </div>
       </div>
     );
   }

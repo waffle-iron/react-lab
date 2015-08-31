@@ -10,18 +10,28 @@ import Bom from './bom/bom';
 import { connect } from 'react-redux';
 import appStateSelector from './appSelector';
 
+import { load, save } from './appActions';
+
 class App extends Component {
   render() {
-    const { renderOnly, dispatch, req, navis, bom } = this.props;
+    const { renderOnly, dispatch, req, nav, bom } = this.props;
     const _dispatch = renderOnly ? null : dispatch;
     return (
       <div>
-        <Header navis={navis} />
+        <Header nav={nav} />
         <Bom dispatch={_dispatch} {...bom} />
         <Footer />
         <Loading loading={req.loading} />
       </div>
     );
+  }
+  componentDidMount() {
+    const { dispatch } = this.props;
+    dispatch(load());
+  }
+  componentWillUnmount() {
+    const { dispatch } = this.props;
+    dispatch(save());
   }
 }
 App.propTypes = {
@@ -29,7 +39,7 @@ App.propTypes = {
   req: PropTypes.shape({
     loading: Loading.propTypes.loading
   }),
-  navis: Header.propTypes.navis,
+  nav: Header.propTypes.nav,
   bom: PropTypes.shape(Bom.propTypes).isRequired
 };
 

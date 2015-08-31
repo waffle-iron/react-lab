@@ -42,7 +42,7 @@ class Cell extends Component {
 }
 Cell.propTypes = {
   auto: PropTypes.bool,
-  size: PropTypes.string.isRequired,
+  size: PropTypes.string,
   sm: PropTypes.string,
   md: PropTypes.string,
   lg: PropTypes.string,

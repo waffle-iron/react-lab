@@ -1,15 +1,15 @@
 import { createSelector } from 'reselect';
+import bomStateSelector from './bom/bomSelector';
 
 const reqSelector = storeState => storeState.req;
-const navisSelector = storeState => storeState.navis;
+const navSelector = storeState => storeState.nav;
 const bomSelector = storeState => storeState.bom;
 
-const bomStateSelector = require('./bom/bomSelector');
-
 const appStateSelector = createSelector(
-  [reqSelector, navisSelector, bomSelector],
-  (req, navis, bom) => {
-    return { req, navis, bom: bomStateSelector(bom) };
+  [reqSelector, navSelector, bomSelector],
+  (req, nav, bom) => {
+    const state = { req, nav, bom: bomStateSelector(bom) };
+    return state;
   }
 );
 

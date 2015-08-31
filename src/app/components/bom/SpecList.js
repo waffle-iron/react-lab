@@ -8,7 +8,7 @@ class SpecList extends Component {
     this.state = { time: props.spec.time };
   }
   render() {
-    const { spec, timeUnit, timeLabel } = this.props;
+    const { spec, timeUnit, timeLabel, onAddNew, onDelete } = this.props;
     return (
       <div className="spec-list">
         <div className="head">
@@ -17,21 +17,22 @@ class SpecList extends Component {
             onChange={::this.handleTimeChange}
             onKeyUp={::this.handleTimeKeyUp}
             onBlur={::this.handleTimeBlur} />
-          <i className="fa fa-plus" />
+          <i className="fa fa-plus" ref="add" onClick={onAddNew} />
         </div>
         <div className="list">
           <ul>
             {spec.specs.map((spec, idx) =>
-              <li key={idx}><Input input={`[]${spec.name}`}
-                value={idx} checked={spec.selected || false}
-                onChange={::this.handleSpecToggle} /></li>
+              <li key={idx}>
+                <i className="fa fa-close" onClick={() => onDelete(idx)} />
+                {spec.name}
+              </li>
             )}
           </ul>
         </div>
       </div>
     );
   }
-  
+
   handleTimeChange(evt) {
     this.setState({ time: evt.target.value });
   }
@@ -65,7 +66,8 @@ class SpecList extends Component {
 }
 
 SpecList.propTypes = {
-  onSpecToggle: PropTypes.func.isRequired,
+  onSpecAddNew: PropTypes.func.isRequired,
+  onSpecDelete: PropTypes.func.isRequired,
   onTimeUpdate: PropTypes.func.isRequired,
   timeUnit: PropTypes.string.isRequired,
   timeLabel: PropTypes.string.isRequired,

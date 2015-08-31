@@ -19,11 +19,24 @@
     border-bottom: @border;
     margin-bottom: @h-gap;
     padding: .5rem 0;
+    height: .75rem;
+
+    i {
+      margin: 0 .3rem;
+    }
   }
   .footer {
     margin-top: @h-gap;
     border-top: @border;
     text-align: right;
     padding: .5rem 0;
+  }
+  .loading {
+    background-color: rgba(64, 64, 64, 0.25);
+    &>div {
+      text-align: center;
+      font-size: 4rem;
+      margin-top: 10rem;
+    }
   }
 }

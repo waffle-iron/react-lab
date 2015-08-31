@@ -46,13 +46,15 @@ class Bom extends Component {
             <div>
               <Cell size="1/2">
                 <SpecList spec={specs.device} timeLabel="设备占用" timeUnit="H"
-                  onTimeUpdate={qty => _dispatch('deviceTimeUpdate', qty)}
-                  onSpecToggle={idx => _dispatch('deviceSpecToggle', idx)} />
+                  onSpecAddNew={() => _dispatch('deviceSpecAdd')}
+                  onSpecDelete={idx => _dispatch('deviceSpecDelete', idx)}
+                  onTimeUpdate={qty => _dispatch('deviceTimeUpdate', qty)} />
               </Cell>
               <Cell size="1/2">
                 <SpecList spec={specs.worker} timeLabel="需要人工" timeUnit="H"
-                  onTimeUpdate={qty => _dispatch('workerTimeUpdate', qty)}
-                  onSpecToggle={idx => _dispatch('workerSpecToggle', idx)} />
+                  onSpecAddNew={() => _dispatch('workerSpecAdd')}
+                  onSpecDelete={idx => _dispatch('workerSpecDelete', idx)}
+                  onTimeUpdate={qty => _dispatch('workerTimeUpdate', qty)} />
               </Cell>
             </div>
             <div className="more" />

@@ -1,35 +1,21 @@
 import { combineReducers } from 'redux';
-import * as Actions from './appActions';
+import { asyncStateReducer } from 'async';
+import { LOAD_END } from './appActions';
+import bomReducer from './bom/bomReducer';
 
-// 异步请求状态
-function req(state = { loading: 0 }, action) {
+function navReducer(state = [], action) {
   switch (action.type) {
-  case Actions.REQ_BEGIN:
-    return { loading: 3 };
-  case Actions.REQ_GOING:
-    return { loading: 1 + state.loading % 3 };
-  case Actions.REQ_ERROR:
-    return { loading: 0, message: action.error.toString() };
-  case Actions.REQ_OK:
-    return { loading: 0 };
-  default:
-    return state;
-  }
-}
-
-// 导航栏
-function navis(state = [], action) {
-  switch (action.type) {
-  case Actions.LOAD_END:
-    return action.navis;
+  case LOAD_END:
+    return action.result.nav;
   default:
     return state;
   }
 }
 
 const storeStateReducer = combineReducers({
-  req, navis,
-  bom: require('./bom/bomReducer')
+  'req': asyncStateReducer,
+  'nav': navReducer,
+  'bom': bomReducer
 });
 
 export default storeStateReducer;

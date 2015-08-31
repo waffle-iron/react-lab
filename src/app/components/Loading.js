@@ -5,7 +5,7 @@ class Loading extends Component {
   render() {
     const { loading } = this.props;
     return (
-      <div className="loading"
+      <div className="pure-mask loading"
         style={{display: loading ? 'block' : 'none'}}>
         <div>Loading{'...'.substr(0, loading)}</div>
       </div>

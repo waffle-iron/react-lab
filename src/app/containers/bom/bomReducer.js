@@ -1,14 +1,19 @@
-import _ from "lodash";
+import _ from 'lodash';
 import { combineReducers } from 'redux';
+import { LOAD_END } from '../appActions';
 import * as Actions from './bomActions';
 
-function ui(state = { itemAdding: false }, action) {
+// 画面显示控制
+function ui(state = {}, action) {
   switch (action.type) {
   case Actions.ITEM_ADD:
     return { itemAdding: true };
+  case Actions.SPEC_ADD:
+    return { specAdding: true, specType: action.specType };
   case Actions.ITEM_ADD_OK:
-  case Actions.ITEM_ADD_CANCEL:
-    return { itemAdding: false };
+  case Actions.SPEC_ADD_OK:
+  case Actions.ADD_CANCEL:
+    return {};
   default:
     return state;
   }
@@ -26,8 +31,8 @@ function proci(state = -1, action) {
 // 工序列表
 function procs(state = [], action) {
   switch (action.type) {
-  case Actions.LOAD_END:
-    return action.procs;
+  case LOAD_END:
+    return action.result.bom.procs;
   case Actions.PROC_UPDATE:
     return [
       ...state.slice(0, action.idx),
@@ -51,6 +56,8 @@ function itemi(state = -1, action) {
 // 物料清单
 function items(state = [], action) {
   switch (action.type) {
+  case LOAD_END:
+    return action.result.bom.items;
   case Actions.PROC_SELECT:
     return action.proc.items;
   case Actions.ITEM_UPDATE:
@@ -113,11 +120,11 @@ function deviceSpecs(state = [], action) {
   switch (action.type) {
   case Actions.PROC_SELECT:
     return action.proc.spec.device;
-  case Actions.DEVICE_SPEC_TOGGLE:
-    const spec = state[action.idx];
+  case Actions.DEVICE_SPEC_ADD_OK:
+    return [...state, action.spec];
+  case Actions.DEVICE_SPEC_DELETE:
     return [
       ...state.slice(0, action.idx),
-      _.assign({}, spec, {selected: !spec.selected}),
       ...state.slice(action.idx + 1)
     ];
   default:
@@ -141,11 +148,11 @@ function workerSpecs(state = [], action) {
   switch (action.type) {
   case Actions.PROC_SELECT:
     return action.proc.spec.worker;
-  case Actions.WORKER_SPEC_TOGGLE:
-    const spec = state[action.idx];
+  case Actions.WORKER_SPEC_ADD_OK:
+    return [...state, action.spec];
+  case Actions.WORKER_SPEC_DELETE:
     return [
       ...state.slice(0, action.idx),
-      _.assign({}, spec, {required: !spec.required}),
       ...state.slice(action.idx + 1)
     ];
   default:

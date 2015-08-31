@@ -1,10 +1,4 @@
 {
-  "navis": [
-    {"url": "/#/", "txt": "Home"},
-    {"url": "/#/prod", "txt": "Products"},
-    {"url": "/#/prod/mt4230t", "txt": "MT4230T"},
-    {"url": "/#/prod/mt4230t/craft/0", "txt": "电子组装"}
-  ],
   "craft": {
     "id": "C01", "name": "C01N",
     "procs": [

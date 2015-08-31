@@ -1,28 +1,28 @@
-var _ = require('lodash');
-var path = require('path');
-var webpack = require('webpack');
+var dev = process.env.NODE_ENV !== 'production';
 
 var entries = {
   'mes': './src/app/index'
 };
 
-var dev = process.env.NODE_ENV !== 'production';
-var baseDir = __dirname;
+var _ = require('lodash');
+var path = require('path');
+var webpack = require('webpack');
 
+var baseDir = __dirname;
+var srcDir = path.join(baseDir, 'src');
+var libDir = path.join(srcDir, 'lib');
 var distDir = path.join(baseDir, 'dist');
 var bowerDir = path.join(baseDir, 'bower_components');
-var ignoreDir = /(node_modules|bower_components)/;
 
 var config = {
   output: {
     path: distDir,
     filename: '[name].js',
-    publicPath: '/dist/'
+    publicPath: './dist/'
   },
   resolve: {
-    root: [bowerDir],
-    extensions: ['', '.js', '.jsx'],
-    modulesDirectories: ['src/lib', 'node_modules']
+    root: [libDir, bowerDir],
+    extensions: ['', '.js']
   },
   plugins: [
     new webpack.DefinePlugin({ __DEVTOOLS__: dev }),
@@ -36,13 +36,18 @@ var config = {
     loaders: [{
       test: /\.js$/,
       loaders: ['react-hot', 'babel'],
-      exclude: ignoreDir,
+      include: [srcDir]
+    }, {
+      test: /\.json$/,
+      loaders: ['json'],
+      include: [srcDir]
+    }, {
+      test: /\.less$/,
+      loaders: ['style', 'css', 'less'],
+      include: [srcDir]
     }, {
       test: /\.css$/,
       loaders: ['style', 'css']
-    }, {
-      test: /\.less$/,
-      loaders: ['style', 'css', 'less']
     }, {
       test: /\.(png|jpe?g|gif|svg|eot|ttf|otf|woff2?)/,
       loaders: ['file']
