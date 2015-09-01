@@ -4,8 +4,8 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { createStore, createDebugPanel } from 'createStore';
 
-import App from './containers/app';
-import storeStateReducer from './containers/appReducer';
+import App from './app/app';
+import storeStateReducer from './app/appReducer';
 
 const store = createStore(storeStateReducer);
 

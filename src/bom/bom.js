@@ -3,10 +3,10 @@ import React, { PropTypes } from 'react';
 import Component from 'PureComponent';
 
 import { Grid, Cell } from 'theme/pure/Pure';
-import CraftBar from '../../components/bom/CraftBar';
-import SpecList from '../../components/bom/SpecList';
-import BomItemList from '../../components/bom/BomItemList';
-import BomAltItemList from '../../components/bom/BomAltItemList';
+import CraftBar from './comps/CraftBar';
+import SpecList from './comps/SpecList';
+import BomItemList from './comps/BomItemList';
+import BomAltItemList from './comps/BomAltItemList';
 
 import * as Actions from './bomActions';
 

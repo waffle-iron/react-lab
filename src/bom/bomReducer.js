@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import { combineReducers } from 'redux';
-import { LOAD_END } from '../appActions';
+import { LOAD_END } from '../app/appActions';
 import * as Actions from './bomActions';
 
 // 画面显示控制

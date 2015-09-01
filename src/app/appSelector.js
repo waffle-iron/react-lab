@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect';
-import bomStateSelector from './bom/bomSelector';
+import bomStateSelector from '../bom/bomSelector';
 
 const reqSelector = storeState => storeState.req;
 const navSelector = storeState => storeState.nav;

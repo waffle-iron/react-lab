@@ -8,7 +8,7 @@ class SpecList extends Component {
     this.state = { time: props.spec.time };
   }
   render() {
-    const { spec, timeUnit, timeLabel, onAddNew, onDelete } = this.props;
+    const { spec, timeUnit, timeLabel, onSpecAddNew, onSpecDelete } = this.props;
     return (
       <div className="spec-list">
         <div className="head">
@@ -17,13 +17,13 @@ class SpecList extends Component {
             onChange={::this.handleTimeChange}
             onKeyUp={::this.handleTimeKeyUp}
             onBlur={::this.handleTimeBlur} />
-          <i className="fa fa-plus" ref="add" onClick={onAddNew} />
+          <i className="fa fa-plus" ref="add" onClick={onSpecAddNew} />
         </div>
         <div className="list">
           <ul>
             {spec.specs.map((spec, idx) =>
               <li key={idx}>
-                <i className="fa fa-close" onClick={() => onDelete(idx)} />
+                <i className="fa fa-close" onClick={() => onSpecDelete(idx)} />
                 {spec.name}
               </li>
             )}

@@ -1,6 +1,6 @@
 import Promise from 'bluebird';
 import { asyncActionCreator } from 'async';
-import { load as loadBom } from './bom/bomActions';
+import { load as loadBom } from '../bom/bomActions';
 
 /*
  * action types (async)

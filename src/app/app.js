@@ -1,11 +1,11 @@
 import React, { PropTypes } from 'react';
 import Component from 'PureComponent';
 
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-import Loading from '../components/Loading';
+import Header from './comps/Header';
+import Footer from './comps/Footer';
+import Loading from './comps/Loading';
 
-import Bom from './bom/bom';
+import Bom from '../bom/bom';
 
 import { connect } from 'react-redux';
 import appStateSelector from './appSelector';

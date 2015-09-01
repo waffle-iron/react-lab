@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import { asyncStateReducer } from 'async';
 import { LOAD_END } from './appActions';
-import bomReducer from './bom/bomReducer';
+import bomReducer from '../bom/bomReducer';
 
 function navReducer(state = [], action) {
   switch (action.type) {

@@ -1,7 +1,7 @@
 var dev = process.env.NODE_ENV !== 'production';
 
 var entries = {
-  'mes': './src/app/index'
+  'mes': './src/index'
 };
 
 var _ = require('lodash');
