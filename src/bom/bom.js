@@ -1,4 +1,4 @@
-import _ from "lodash";
+import assign from 'object-assign';
 import React, { PropTypes } from 'react';
 import Component from 'PureComponent';
 
@@ -24,8 +24,8 @@ class Bom extends Component {
       <div className="bom">
         <CraftBar craft="电子组装" proci={proci} procs={procs} onProcSelect={idx => {
           if (idx !== proci) {
-            (itemi !== -1) && _.assign(items[itemi], { altItems });
-            (proci !== -1) && _.assign(procs[proci], { items, specs });
+            (itemi !== -1) && assign(items[itemi], { altItems });
+            (proci !== -1) && assign(procs[proci], { items, specs });
             _dispatch('procSelect', idx, procs[idx]);
           }
         }} />
@@ -34,7 +34,7 @@ class Bom extends Component {
             <BomItemList itemi={itemi} items={items}
               onAddNew={() => _dispatch('itemAdd')}
               onSelect={idx => {
-                (itemi !== -1) && _.assign(items[itemi], { altItems });
+                (itemi !== -1) && assign(items[itemi], { altItems });
                 _dispatch('itemSelect', idx, items[idx]);
               }}
               onDelete={idx => _dispatch('itemDelete', idx)}

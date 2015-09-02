@@ -122,7 +122,7 @@ var workerSpecs = [{
 
 var data = {
   procs: procs,
-  items: procs,
+  items: items,
   specs: {
     device: deviceSpecs,
     worker: workerSpecs

@@ -19,7 +19,7 @@ class BomItem extends Component {
         <td>{item.from}</td>
         <td>{item.unit}</td>
         <td className="number">
-          <Editable ref="qty" value={item.qty.toString()}
+          <Editable ref="qty" value={(item.qty || 0).toString()}
             onUpdate={::this.handleQtyUpdate} />
         </td>
         <td>{item.misc}</td>

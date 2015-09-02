@@ -43,7 +43,7 @@ function asyncStateReducer(state = { loading: 0 }, action) {
   case REQ_GOING:
     return { loading: 1 + state.loading % 3 };
   case REQ_ERROR:
-    return { loading: 0, message: action.error.toString() };
+    return { loading: 0, message: Object.toString(action.error) };
   case REQ_OK:
     return { loading: 0 };
   default:

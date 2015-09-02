@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import assign from 'object-assign';
 import React from 'react/addons';
 const TestUtils = React.addons.TestUtils;
 
@@ -31,7 +31,7 @@ describe('BomAltItem', () => {
   });
 
   it('should render an odd row with toggle-on', () => {
-    const idx = 1, item = _.assign({}, _items[idx], {alt: true});
+    const idx = 1, item = assign({}, _items[idx], {alt: true});
     const e = <BomAltItem idx={idx} item={item} onToggle={noop} />;
     const h = React.renderToStaticMarkup(e);
     h.should.be.equal([

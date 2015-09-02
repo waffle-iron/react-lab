@@ -1,5 +1,3 @@
-import Promise from 'bluebird';
-
 /*
  * action types (async)
  */
@@ -29,32 +27,6 @@ export const DEVICE_SPEC_DELETE = 'DEVICE_SPEC_DELETE';
 export const WORKER_TIME_UPDATE = 'WORKER_TIME_UPDATE';
 export const WORKER_SPEC_ADD = 'WORKER_SPEC_ADD';
 export const WORKER_SPEC_DELETE = 'WORKER_SPEC_DELETE';
-
-/*
- * action creators (async)
- */
-
-const _data = require('./__tests__/bom-test.json');
-function loadProcs() {
-  return new Promise((resolve, reject) =>
-  setTimeout(() => {
-    resolve(_data.craft.procs);
-  }, 1000));
-}
-function loadItems() {
-  return new Promise((resolve, reject) =>
-  setTimeout(() => {
-    resolve(_data.items);
-  }, 1000));
-}
-
-export function load() {
-  return Promise.join(
-    loadProcs(), loadItems(),
-    (procs, items) => {
-      return { procs, items };
-    });
-}
 
 /*
  * action creators

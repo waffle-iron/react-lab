@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import assign from 'object-assign';
 import React, { Component } from 'react/addons';
 
 class PureComponent extends Component {
@@ -13,7 +13,7 @@ class PureComponent extends Component {
 
 [
   React.addons.PureRenderMixin
-].forEach(mixin => _.assign(
+].forEach(mixin => assign(
   PureComponent.prototype, mixin));
 
 export default PureComponent;

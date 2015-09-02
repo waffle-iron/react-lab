@@ -14,8 +14,7 @@ describe('SpecList', () => {
     };
     const e = <SpecList spec={spec}
       timeLabel="设备占用" timeUnit="H"
-      onAddNew={noop} onDelete={noop}
-      onSpecToggle={noop} onTimeUpdate={noop} />;
+      onSpecAddNew={noop} onSpecDelete={noop} onTimeUpdate={noop} />;
     const h = React.renderToStaticMarkup(e);
     h.should.be.equal([
       '<div class="spec-list"><div class="head">',

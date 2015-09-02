@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import assign from 'object-assign';
 import { combineReducers } from 'redux';
 import { LOAD_END } from '../app/appActions';
 import * as Actions from './bomActions';
@@ -78,7 +78,7 @@ function items(state = [], action) {
       const item = state[action.idx];
       return [
         ...state.slice(0, action.idx),
-        _.assign({}, item, {qty: action.qty}),
+        assign({}, item, {qty: action.qty}),
         ...state.slice(action.idx + 1)
       ];
     }
@@ -96,7 +96,7 @@ function altItems(state = [], action) {
     const altItem = state[action.idx];
     return [
       ...state.slice(0, action.idx),
-      _.assign({}, altItem, {selected: !altItem.selected}),
+      assign({}, altItem, {selected: !altItem.selected}),
       ...state.slice(action.idx + 1)
     ];
   default:

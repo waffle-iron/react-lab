@@ -4,7 +4,7 @@ var entries = {
   'mes': './src/index'
 };
 
-var _ = require('lodash');
+var assign = require('object-assign');
 var path = require('path');
 var webpack = require('webpack');
 
@@ -56,7 +56,7 @@ var config = {
 };
 
 if (dev) {
-  _.assign(config, {
+  assign(config, {
     devtool: '#cheap-module-inline-source-map',
     entry: Object.keys(entries).reduce(function (settings, key) {
       settings[key] = [
@@ -72,7 +72,7 @@ if (dev) {
   );
 }
 else {
-  _.assign(config, {
+  assign(config, {
     // devtool: '#inline-source-map',
     entry: Object.keys(entries).reduce(function (settings, key) {
       settings[key] = [entries[key]];

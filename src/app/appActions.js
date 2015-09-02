@@ -1,6 +1,6 @@
 import Promise from 'bluebird';
 import { asyncActionCreator } from 'async';
-import { load as loadBom } from '../bom/bomActions';
+import API from '../api';
 
 /*
  * action types (async)
@@ -13,25 +13,13 @@ export const SAVE_END = 'SAVE_END';
  * action creators
  */
 
-const _nav = [
-  {url: '/#/', txt: 'Home'},
-  {url: '/#/prod', txt: 'Products'},
-  {url: '/#/prod/mt4230t', txt: 'MT4230T'},
-  {url: '/#/prod/mt4230t/craft', txt: '电子组装'}
-];
-function loadNav() {
-  return new Promise((resolve, reject) =>
-    setTimeout(() => {
-      resolve(_nav);
-    }, 1000));
-}
 export function load() {
   return asyncActionCreator(
     result => {
       return { type: LOAD_END, result };
     },
     state => Promise.join(
-      loadNav(), loadBom(),
+      API.loadNav(), API.loadBom(),
       (nav, bom) => {
         return { nav, bom };
       })
