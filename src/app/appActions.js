@@ -19,9 +19,9 @@ export function load() {
       return { type: LOAD_END, result };
     },
     state => Promise.join(
-      API.loadNav(), API.loadBom(),
-      (nav, bom) => {
-        return { nav, bom };
+      API.loadNav(), API.loadBom(), API.loadMst(),
+      (nav, bom, mst) => {
+        return { nav, bom, mst };
       })
   );
 }

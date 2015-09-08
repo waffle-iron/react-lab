@@ -8,8 +8,8 @@ describe('SpecList', () => {
     const spec = {
       time: 1.5,
       specs: [
-        {code: 'DS01', name: '烧录设备'},
-        {code: 'DS04', name: '测试设备'},
+        {code: 'DS01', text: '烧录设备'},
+        {code: 'DS04', text: '测试设备'},
       ]
     };
     const e = <SpecList spec={spec}
@@ -20,10 +20,10 @@ describe('SpecList', () => {
       '<div class="spec-list"><div class="head">',
       '<label>设备占用<input type="text" placeholder="数量" value="1.5" class="time">H</label>',
       '<i class="fa fa-plus"></i></div>',
-      '<div class="list"><ul>',
-      '<li><i class="fa fa-close"></i>烧录设备</li>',
-      '<li><i class="fa fa-close"></i>测试设备</li>',
-      '</ul></div></div>'
+      '<div class="list">',
+      '<div class="item"><i class="fa fa-close"></i>烧录设备</div>',
+      '<div class="item"><i class="fa fa-close"></i>测试设备</div>',
+      '</div></div>'
     ].join(''));
   });
 });

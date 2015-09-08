@@ -14,12 +14,12 @@ import { load, save } from './appActions';
 
 class App extends Component {
   render() {
-    const { renderOnly, dispatch, req, nav, bom } = this.props;
+    const { renderOnly, dispatch, req, nav, mst, bom } = this.props;
     const _dispatch = renderOnly ? null : dispatch;
     return (
       <div>
         <Header nav={nav} />
-        <Bom dispatch={_dispatch} {...bom} />
+        <Bom dispatch={_dispatch} mst={mst} {...bom} />
         <Footer />
         <Loading loading={req.loading} />
       </div>
@@ -40,6 +40,7 @@ App.propTypes = {
     loading: Loading.propTypes.loading
   }),
   nav: Header.propTypes.nav,
+  mst: PropTypes.object,
   bom: PropTypes.shape(Bom.propTypes).isRequired
 };
 

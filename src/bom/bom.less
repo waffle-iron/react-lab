@@ -1,10 +1,8 @@
 @import "../theme";
-
 @h-craft-bar: 60px;
 @h-item-list: 193px;
 @h-spec-list: 250px;
 @h-more: 164px;
-
 @craft-node-color: lighten(@node-color, 35%);
 @panel-text-color: darken(@base-color, 35%);
 @panel-head-color: lighten(@base-color, 35%);
@@ -13,8 +11,7 @@
 .head() {
   background-color: @panel-head-color;
   color: @panel-text-color;
-
-  padding: .5rem;
+  padding: 0.5rem;
   position: relative;
 }
 
@@ -23,19 +20,20 @@
     cursor: pointer;
     padding: 1px 2px;
     color: darken(@base-color, 30%);
-
     position: absolute;
-    top: 7px; right: 6px;
+    top: 7px;
+    right: 6px;
   }
+
   i:hover {
     border: 1px dotted darken(@base-color, 40%);
-
-    top: 6px; right: 5px;
+    top: 6px;
+    right: 5px;
   }
 }
 
 .bom {
-  font-size: .75rem;
+  font-size: 0.75rem;
 
   .craft-bar {
     background-color: @panel-head-color;
@@ -52,6 +50,7 @@
       border: 1px solid gray;
 
       &.selected {
+
       }
 
       &.craft {
@@ -60,25 +59,30 @@
 
       >i {
         position: absolute;
-        top: 18px; left: 63px;
+        top: 18px;
+        left: 63px;
       }
     }
   }
 
-  .item-list,.item-alt-list {
+  .item-list,
+  .item-alt-list {
     background-color: @panel-list-color;
 
     >.head {
       .head;
     }
+
     >.list {
       height: @h-item-list;
       overflow: auto;
+
       >table {
         width: 100%;
       }
     }
   }
+
   .item-list {
     margin-bottom: @h-gap;
 
@@ -97,20 +101,39 @@
 
     .head {
       .head;
+
       input {
-        position: absolute; top: .3rem;
-        width: 4em; margin-left: .2rem;
+        position: absolute;
+        top: 0.3rem;
+        width: 4em;
+        margin-left: 0.2rem;
         text-align: right;
       }
+
       span:last-child {
-        position: absolute; right: 2.5rem;
+        position: absolute;
+        right: 2.5rem;
       }
+
       .head-icon;
     }
+
     .list {
       background-color: @panel-list-color;
       height: @h-spec-list;
       overflow: auto;
+      padding: .25rem;
+
+      >.item {
+        cursor: pointer;
+        padding: .25rem;
+        >i {
+          margin-right: .5rem;
+        }
+      }
+      >.item:hover {
+        background-color: @panel-head-color;
+      }
     }
   }
 
@@ -120,5 +143,4 @@
     height: @h-more;
     overflow: auto;
   }
-
 }

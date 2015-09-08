@@ -12,9 +12,19 @@ function navReducer(state = [], action) {
   }
 }
 
+function mstReducer(state = null, action) {
+  switch (action.type) {
+  case LOAD_END:
+    return action.result.mst;
+  default:
+    return state;
+  }
+}
+
 const storeStateReducer = combineReducers({
   'req': asyncStateReducer,
   'nav': navReducer,
+  'mst': mstReducer,
   'bom': bomReducer
 });
 

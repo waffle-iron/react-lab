@@ -10,7 +10,7 @@ function get(url) {
     .then(r => JSON.parse(r.text));
 }
 
-export default function(url) {
+export default function createAjax(url) {
   return {
     get: uri => get(url + uri)
   };

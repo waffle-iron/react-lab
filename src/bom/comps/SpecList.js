@@ -20,14 +20,12 @@ class SpecList extends Component {
           <i className="fa fa-plus" ref="add" onClick={onSpecAddNew} />
         </div>
         <div className="list">
-          <ul>
-            {spec.specs.map((spec, idx) =>
-              <li key={idx}>
-                <i className="fa fa-close" onClick={() => onSpecDelete(idx)} />
-                {spec.name}
-              </li>
-            )}
-          </ul>
+          {spec.specs.map((spec, idx) =>
+            <div key={idx} className="item">
+              <i className="fa fa-close" onClick={() => onSpecDelete(idx)} />
+              {spec.text}
+            </div>
+          )}
         </div>
       </div>
     );
@@ -74,8 +72,8 @@ SpecList.propTypes = {
   spec: PropTypes.shape({
     time: PropTypes.number.isRequired,
     specs: PropTypes.arrayOf(PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      selected: PropTypes.bool
+      code: PropTypes.string.isRequired,
+      text: PropTypes.string.isRequired
     })).isRequired,
   }).isRequired,
 };

@@ -10,12 +10,24 @@ import BomAltItemList from './comps/BomAltItemList';
 
 import * as Actions from './bomActions';
 
+const NO_SPEC = { time: 0, specs: [] };
+
+const specsSelect = (mst, bomSpecs, specType) => {
+  if (!mst) return NO_SPEC;
+  return {
+    time: bomSpecs[specType].time,
+    specs: mst.specs[specType]
+  }
+};
+
 class Bom extends Component {
   render() {
     const {
-      dispatch, ui, proci, procs,
+      dispatch, mst, ui, proci, procs,
       itemi, items, altItems, specs
     } = this.props;
+    const mstDeviceSpec = specsSelect(mst, specs, 'device');
+    const mstWorkerSpec = specsSelect(mst, specs, 'worker');
     const _dispatch = (actionName, ...args) => {
       dispatch ? dispatch(Actions[actionName](...args))
         : console.log(actionName, ...args);
@@ -45,13 +57,13 @@ class Bom extends Component {
           <Cell size="1/3">
             <div>
               <Cell size="1/2">
-                <SpecList spec={specs.device} timeLabel="设备占用" timeUnit="H"
+                <SpecList spec={mstDeviceSpec} timeLabel="设备占用" timeUnit="H"
                   onSpecAddNew={() => _dispatch('deviceSpecAdd')}
                   onSpecDelete={idx => _dispatch('deviceSpecDelete', idx)}
                   onTimeUpdate={qty => _dispatch('deviceTimeUpdate', qty)} />
               </Cell>
               <Cell size="1/2">
-                <SpecList spec={specs.worker} timeLabel="需要人工" timeUnit="H"
+                <SpecList spec={mstWorkerSpec} timeLabel="需要人工" timeUnit="H"
                   onSpecAddNew={() => _dispatch('workerSpecAdd')}
                   onSpecDelete={idx => _dispatch('workerSpecDelete', idx)}
                   onTimeUpdate={qty => _dispatch('workerTimeUpdate', qty)} />

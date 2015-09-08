@@ -1,16 +1,13 @@
 import { createSelector } from 'reselect';
 import bomStateSelector from '../bom/bomSelector';
 
-const reqSelector = storeState => storeState.req;
-const navSelector = storeState => storeState.nav;
-const bomSelector = storeState => storeState.bom;
-
-const appStateSelector = createSelector(
-  [reqSelector, navSelector, bomSelector],
-  (req, nav, bom) => {
-    const state = { req, nav, bom: bomStateSelector(bom) };
-    return state;
-  }
-);
+const appStateSelector = storeState => {
+  return {
+    req: storeState.req,
+    nav: storeState.nav,
+    mst: storeState.mst,
+    bom: bomStateSelector(storeState.bom)
+  };
+};
 
 export default appStateSelector;

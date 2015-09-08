@@ -1,15 +1,28 @@
-var express = require('express');
-var corser = require("corser");
-var app = express();
-app.use(corser.create());
+var app = require('connect')();
+// app.use(require('connect-livereload')());
+app.use(require('corser').create());
 
-app.get('/bom', function (req, res) {
-  res.json(require('./bom.js'));
-});
-app.get('/nav', function (req, res) {
-  res.json(require('./nav.js'));
+function sendJSON(res, data) {
+  res.setHeader('Content-Type', 'application/json; charset=utf-8');
+  res.end(JSON.stringify(data));
+}
+
+['/bom', '/nav']
+.forEach(function(uri) {
+  app.use(uri, function(req, res) {
+    sendJSON(res, require('.' + uri));
+  });
 });
 
-app.listen(3001, 'localhost', function (err, result) {
-  console.log(err ? err: 'Listening at localhost:3001');
+app.use('/mst', function(req, res) {
+  sendJSON(res, {
+    specs: require('./specs'),
+    materials: require('./materials'),
+    material_attrs: require('./material_attrs')
+  });
+});
+
+var port = 3001;
+app.listen(port, function() {
+  console.log('Serving at http://localhost:%s', port);
 });
