@@ -1,5 +1,4 @@
-var jsdom = require('node-jsdom'); // node.js
-// var jsdom = require('jsdom'); // io.js
+var jsdom = require('jsdom');
 
 // setup the simplest document possible
 var doc = jsdom.jsdom('<!doctype html><html><body></body></html>');

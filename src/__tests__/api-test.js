@@ -12,4 +12,9 @@ describe('API', () => {
       .then(r => console.log(Object.keys(r)));
   });
 
+  it('loadMst', done => {
+    API.loadMst().finally(done)
+      .then(r => console.log(Object.keys(r)));
+  });
+
 });

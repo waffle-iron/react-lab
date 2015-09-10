@@ -1,8 +1,8 @@
-var app = require('connect')();
-// app.use(require('connect-livereload')());
-app.use(require('corser').create());
+var app = require('express')();
+app.use(require('cors')());
 
 function sendJSON(res, data) {
+  res.setHeader('Authorization', 'DEVELOPER_ACCESS_TOKEN');
   res.setHeader('Content-Type', 'application/json; charset=utf-8');
   res.end(JSON.stringify(data));
 }
