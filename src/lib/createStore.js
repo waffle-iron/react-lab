@@ -13,8 +13,8 @@ if (__DEVTOOLS__) { // Use redux-devtools
   createDebugPanel = (store) => {
     const { DevTools, DebugPanel, LogMonitor } = require('redux-devtools/lib/react');
     return (
-      <DebugPanel top bottom right>
-        <DevTools store={store} monitor={LogMonitor} />
+      <DebugPanel top bottom right >
+        <DevTools store={store} monitor={LogMonitor} visibleOnLoad />
       </DebugPanel>
     );
   }

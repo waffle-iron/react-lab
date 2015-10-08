@@ -1,4 +1,5 @@
 var dev = process.env.NODE_ENV !== 'production';
+console.log('Building in ' + (dev ? 'development' : 'production') + ' mode...');
 
 var entries = {
   'mes': './src/index'

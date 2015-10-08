@@ -1,5 +1,7 @@
-import React from 'react/addons';
-const TestUtils = React.addons.TestUtils;
+import React from 'react';
+import ReactDOM from 'react-dom';
+import ReactDOMServer from 'react-dom/server';
+import ReactTestUtils from 'react-addons-test-utils';
 
 import Editable from '../Editable';
 
@@ -13,10 +15,10 @@ const _elem = () => {
   return <Editable text="OK" value={_value} {..._eventHandlers} />;
 };
 const _html = () => {
-  return React.renderToStaticMarkup(_elem());
+  return ReactDOMServer.renderToStaticMarkup(_elem());
 };
 const _comp = (eventHandlers) => {
-  return TestUtils.renderIntoDocument(_elem());
+  return ReactTestUtils.renderIntoDocument(_elem());
 };
 
 describe('Pure', () => {
@@ -28,28 +30,28 @@ describe('Pure', () => {
     });
     it('should turn into edit mode when doubleClicked', () => {
       const comp = _comp();
-      TestUtils.Simulate.doubleClick(comp.node());
+      ReactTestUtils.Simulate.doubleClick(comp.node());
       comp.state.editing.should.be.true;
     });
     it('should change state.editValue', () => {
       _value = '1';
       const newValue = '2';
       const comp = _comp();
-      TestUtils.Simulate.doubleClick(comp.node());
+      ReactTestUtils.Simulate.doubleClick(comp.node());
       const node = comp.input();
       node.value = newValue;
-      TestUtils.Simulate.change(node);
+      ReactTestUtils.Simulate.change(node);
       comp.state.editValue.should.be.equal(newValue);
     });
     it('should update _value when keyUp(Enter)', () => {
       _value = '11';
       const newValue = '12';
       const comp = _comp();
-      TestUtils.Simulate.doubleClick(comp.node());
+      ReactTestUtils.Simulate.doubleClick(comp.node());
       const node = comp.input();
       node.value = newValue;
-      TestUtils.Simulate.change(node);
-      TestUtils.Simulate.keyUp(node, {key: 'Enter'});
+      ReactTestUtils.Simulate.change(node);
+      ReactTestUtils.Simulate.keyUp(node, {key: 'Enter'});
       comp.state.editing.should.be.false;
       _value.should.be.equal(newValue);
     });
@@ -59,11 +61,11 @@ describe('Pure', () => {
       const newValue = '22';
       _cancelled = false;
       const comp = _comp();
-      TestUtils.Simulate.doubleClick(comp.node());
+      ReactTestUtils.Simulate.doubleClick(comp.node());
       const node = comp.input();
       node.value = newValue;
-      TestUtils.Simulate.change(node);
-      TestUtils.Simulate.keyUp(node, {key: 'Escape'});
+      ReactTestUtils.Simulate.change(node);
+      ReactTestUtils.Simulate.keyUp(node, {key: 'Escape'});
       comp.state.editing.should.be.false;
       _value.should.be.equal(oldValue);
       _cancelled.should.be.true;
@@ -73,11 +75,11 @@ describe('Pure', () => {
       const newValue = '32';
       _cancelled = false;
       const comp = _comp();
-      TestUtils.Simulate.doubleClick(comp.node());
+      ReactTestUtils.Simulate.doubleClick(comp.node());
       const node = comp.input();
       node.value = newValue;
-      TestUtils.Simulate.change(node);
-      TestUtils.Simulate.blur(node);
+      ReactTestUtils.Simulate.change(node);
+      ReactTestUtils.Simulate.blur(node);
       comp.state.editing.should.be.false;
       _value.should.be.equal(newValue);
     });

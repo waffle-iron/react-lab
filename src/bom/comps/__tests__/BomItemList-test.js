@@ -1,19 +1,27 @@
-import React from 'react/addons';
-const TestUtils = React.addons.TestUtils;
+import React from 'react'
+import ReactDOMServer from 'react-dom/server'
+import ReactTestUtils from 'react-addons-test-utils';
+
 import BomItemList, { BomItem } from '../BomItemList';
 
 const noop = () => {};
 const _items = require('./BomItemList-test.json');
+const Wrapper = React.createClass({
+  render() {
+    const itemHandlers = this.props.itemHandlers;
+    return (
+      <table><tbody>
+        {_items.slice(0, 2).map((item, idx) =>
+          <BomItem key={idx} item={item}
+            odd={idx % 2 === 1} selected={idx === 1}
+            {...itemHandlers} />)}
+      </tbody></table>
+    );
+  }
+});
 const _itemComps = (itemHandlers) => {
-  const tree = TestUtils.renderIntoDocument((
-    <table><tbody>
-      {_items.slice(0, 2).map((item, idx) =>
-        <BomItem key={idx} item={item}
-          odd={idx % 2 === 1} selected={idx === 1}
-          {...itemHandlers} />)}
-    </tbody></table>
-  ));
-  return TestUtils.scryRenderedComponentsWithType(tree, BomItem);
+  const tree = ReactTestUtils.renderIntoDocument(<Wrapper itemHandlers={itemHandlers} />);
+  return ReactTestUtils.scryRenderedComponentsWithType(tree, BomItem);
 }
 
 describe('BomItem', () => {
@@ -23,7 +31,7 @@ describe('BomItem', () => {
     const e = <BomItem item={_items[idx]}
       odd={idx % 2 === 1} selected={idx === 1}
       onSelect={noop} onDelete={noop} onQtyUpdate={noop} />;
-    const h = React.renderToStaticMarkup(e);
+    const h = ReactDOMServer.renderToStaticMarkup(e);
     h.should.be.equal([
       '<tr class=""><td>1001</td><td>MBD-A1</td><td>A1型主板</td><td>主</td><td>I</td>',
       '<td>p</td><td class="number"><div>1.1</div></td><td>USB2</td>',
@@ -35,7 +43,7 @@ describe('BomItem', () => {
     const e = <BomItem item={_items[idx]}
       odd={idx % 2 === 1} selected={idx === 1}
       onSelect={noop} onDelete={noop} onQtyUpdate={noop} />;
-    const h = React.renderToStaticMarkup(e);
+    const h = ReactDOMServer.renderToStaticMarkup(e);
     h.should.be.equal([
       '<tr class="pure-table-odd selected"><td>1002</td><td>MBD-A2</td><td>A2型主板</td><td>主</td><td>I</td>',
       '<td>p</td><td class="number"><div>1.2</div></td><td>USB2/WiFi</td>',
@@ -51,11 +59,11 @@ describe('BomItem', () => {
       onQtyUpdate: (qty) => { _qty = qty; }
     });
     const comp = comps[1].refs.qty;
-    TestUtils.Simulate.doubleClick(comp.node());
+    ReactTestUtils.Simulate.doubleClick(comp.node());
     const node = comp.input();
     node.value = '2';
-    TestUtils.Simulate.change(node);
-    TestUtils.Simulate.blur(node);
+    ReactTestUtils.Simulate.change(node);
+    ReactTestUtils.Simulate.blur(node);
     _qty.should.be.equal(2);
   });
 
@@ -66,7 +74,7 @@ describe('BomItem', () => {
       onDelete: noop,
       onQtyUpdate: noop
     });
-    TestUtils.Simulate.click(comps[1].node());
+    ReactTestUtils.Simulate.click(comps[1].node());
     _tigger.should.be.equal('onSelect');
   });
 
@@ -77,7 +85,7 @@ describe('BomItem', () => {
       onDelete: () => { _tigger = 'onDelete'; },
       onQtyUpdate: noop
     });
-    TestUtils.Simulate.click(comps[1].node('del'));
+    ReactTestUtils.Simulate.click(comps[1].node('del'));
     _tigger.should.be.equal('onDelete');
   });
 
@@ -88,7 +96,7 @@ describe('BomItemList', () => {
   it('should render an empty bom item list', () => {
     const e = <BomItemList itemi={-1} items={[]}
       onSelect={noop} onAddNew={noop} onDelete={noop} onQtyUpdate={noop} />;
-    const h = React.renderToStaticMarkup(e);
+    const h = ReactDOMServer.renderToStaticMarkup(e);
     h.should.be.equal([
       '<div class="item-list">',
       '<div class="head"><div class="title">物料</div>',
@@ -102,7 +110,7 @@ describe('BomItemList', () => {
   it('should render an bom item list with 2 rows', () => {
     const e = <BomItemList itemi={1} items={_items.slice(0, 2)}
       onSelect={noop} onAddNew={noop} onDelete={noop} onQtyUpdate={noop} />;
-    const h = React.renderToStaticMarkup(e);
+    const h = ReactDOMServer.renderToStaticMarkup(e);
     h.should.be.equal([
       '<div class="item-list">',
       '<div class="head"><div class="title">物料</div>',
@@ -126,8 +134,8 @@ describe('BomItemList', () => {
 
     const e = <BomItemList itemi={1} items={_items.slice(0, 2)}
       onSelect={noop} onAddNew={_handleAddNew} onDelete={noop} onQtyUpdate={noop} />;
-    const c = TestUtils.renderIntoDocument(e);
-    TestUtils.Simulate.click(c.node('add'));
+    const c = ReactTestUtils.renderIntoDocument(e);
+    ReactTestUtils.Simulate.click(c.node('add'));
     _add.should.be.true;
   });
 

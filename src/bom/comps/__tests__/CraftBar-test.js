@@ -1,4 +1,6 @@
 import React from 'react';
+import ReactDOMServer from 'react-dom/server';
+
 import CraftBar from '../CraftBar';
 
 const noop = () => {};
@@ -13,7 +15,7 @@ describe('CraftBar', () => {
       {id: 'CP05', name: '包装'}
     ];
     const e = <CraftBar craft={'电子组装'} proci={proci} procs={procs} onProcSelect={noop} />;
-    const h = React.renderToStaticMarkup(e);
+    const h = ReactDOMServer.renderToStaticMarkup(e);
     h.should.be.equal([
       '<div class="craft-bar">',
       '<div class="node" style="left:0px;">烧录<i class="fa fa-arrow-right"></i></div>',

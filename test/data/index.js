@@ -1,11 +1,19 @@
 var app = require('express')();
 app.use(require('cors')());
+app.use(require('body-parser').urlencoded({ extended: true }));
 
 function sendJSON(res, data) {
   res.setHeader('Authorization', 'DEVELOPER_ACCESS_TOKEN');
   res.setHeader('Content-Type', 'application/json; charset=utf-8');
   res.end(JSON.stringify(data));
 }
+
+app.post('/echo', function(req, res) {
+  console.log('req.params', req.params);
+  console.log('req.query', req.query);
+  console.log('req.body', req.body);
+  sendJSON(res, {});
+});
 
 ['/bom', '/nav']
 .forEach(function(uri) {

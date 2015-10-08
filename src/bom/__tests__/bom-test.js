@@ -1,5 +1,4 @@
-import React from 'react/addons';
-const TestUtils = React.addons.TestUtils;
+import ReactTestUtils from 'react-addons-test-utils';
 
 const noop = () => {};
 const data = require('./bom-test.json');

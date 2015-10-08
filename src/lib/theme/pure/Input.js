@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react/addons';
+import React, { PropTypes } from 'react';
 import Component from 'PureComponent';
 import classnames from 'classnames';
 import { reduceSizeProps } from './Pure';
@@ -84,7 +84,7 @@ const _inputElem = (opts, props) => {
 };
 
 class Input extends Component {
-  
+
   render() {
     const { input, br, ...props } = this.props;
     const opts = _parse(input);

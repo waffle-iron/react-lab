@@ -1,4 +1,6 @@
 import React from 'react';
+import ReactDOMServer from 'react-dom/server';
+
 import Header from '../Header';
 
 describe('Header', () => {
@@ -9,7 +11,7 @@ describe('Header', () => {
       {url: '/#/prod/mt4230t', txt: 'MT4230T'},
       {url: '/#/prod/mt4230t/craft', txt: '电子组装'}
     ];
-    const h = React.renderToStaticMarkup(<Header nav={nav} />);
+    const h = ReactDOMServer.renderToStaticMarkup(<Header nav={nav} />);
     h.should.be.equal([
       '<div class="header">',
       '<span><a href="/#/">Home</a><i class="fa fa-chevron-right"></i></span>',
