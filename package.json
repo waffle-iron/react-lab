@@ -46,6 +46,7 @@
     "less-loader": "^2.2.1",
     "lodash": "^3.10.1",
     "mocha": "^2.3.3",
+    "nodemon": "^1.7.1",
     "object-assign": "^4.0.1",
     "react": "^0.14.0",
     "react-addons-pure-render-mixin": "^0.14.0",
