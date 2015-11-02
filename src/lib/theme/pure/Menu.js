@@ -72,7 +72,6 @@ MenuItem.defaultProps = {
   selected: false
 };
 
-export default
 class Menu extends Component {
   render() {
     const { label, items, className, horizontal, scrollable, ...props } = this.props;

@@ -2,10 +2,10 @@ import React from 'react';
 import { compose, createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 
-let _createStore, createDebugPanel = () => void 0;
+let finalCreateStore, createDebugPanel = () => void 0;
 if (__DEVTOOLS__) { // Use redux-devtools
   const { devTools, persistState } = require('redux-devtools');
-  _createStore = compose(
+  finalCreateStore = compose(
     applyMiddleware(thunk),
     devTools(),
     persistState(window.location.href.match(/[?&]debug_session=([^&]+)\b/))
@@ -20,10 +20,10 @@ if (__DEVTOOLS__) { // Use redux-devtools
   }
 }
 else {
-  _createStore = applyMiddleware(thunk)(createStore);
+  finalCreateStore = applyMiddleware(thunk)(createStore);
 }
 
-export default {
-  createStore: _createStore,
+export {
+  finalCreateStore as createStore,
   createDebugPanel
 };

@@ -17,9 +17,9 @@ class Editable extends Component {
       return (
         <div className={className}>
           <input ref="input" value={editValue}
-            onChange={::this.handleChange}
-            onKeyUp={::this.handleKeyUp}
-            onBlur={::this.handleBlur} {...props} />
+            onChange={this.handleChange.bind(this)}
+            onKeyUp={this.handleKeyUp.bind(this)}
+            onBlur={this.handleBlur.bind(this)} {...props} />
         </div>
       );
     }
@@ -28,7 +28,7 @@ class Editable extends Component {
         : (typeof text === 'function' ? text(value) : text);
       return (
         <div className={className}
-          onDoubleClick={::this.handleEditing}>{t}</div>
+          onDoubleClick={this.handleEditing.bind(this)}>{t}</div>
       );
     }
   }

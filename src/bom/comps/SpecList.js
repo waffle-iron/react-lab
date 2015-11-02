@@ -14,9 +14,9 @@ class SpecList extends Component {
         <div className="head">
           <Input input={`${timeLabel}[-数量]${timeUnit}`}
             className="time" value={this.state.time}
-            onChange={::this.handleTimeChange}
-            onKeyUp={::this.handleTimeKeyUp}
-            onBlur={::this.handleTimeBlur} />
+            onChange={this.handleTimeChange.bind(this)}
+            onKeyUp={this.handleTimeKeyUp.bind(this)}
+            onBlur={this.handleTimeBlur.bind(this)} />
           <i className="fa fa-plus" ref="add" onClick={onSpecAddNew} />
         </div>
         <div className="list">

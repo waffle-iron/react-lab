@@ -11,7 +11,7 @@ class BomAltItem extends Component {
     return (
       <Table.Row odd={idx % 2 === 1}>
         <td><Input ref="toggle" input="[]" value={idx} checked={item.alt}
-          onChange={::this.handleToggle} /></td>
+          onChange={this.handleToggle.bind(this)} /></td>
         <td>{item.id}</td>
         <td>{item.code}</td>
         <td>{item.name}</td>

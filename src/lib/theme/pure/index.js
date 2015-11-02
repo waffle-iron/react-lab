@@ -1,6 +1,8 @@
 export { Grid, Cell, Mask, Well } from './Pure';
-export Button from './Button';
-export Input from './Input';
-export Table from './Table';
-export Menu from './Menu';
-export Editable from './Editable';
+
+import Button from './Button';
+import Input from './Input';
+import Table from './Table';
+import Menu from './Menu';
+import Editable from './Editable';
+export { Button, Input, Table, Menu, Editable };

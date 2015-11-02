@@ -4,10 +4,15 @@ import Component from 'PureComponent';
 import classnames from 'classnames';
 
 const COL_HEADS = '分类|编号|名称|主辅|供应商|消耗单位|数量|属性|删除'.split('|');
+const COL_SIZES = [72, 100, 120, 50, 100, 50, 20, 120, 40].map(x => {
+  return { width: x + 'px' };
+});
+// console.log('COL_SIZES', COL_SIZES);
 
 export
 class BomItem extends Component {
   render() {
+    let colIdx = 0;
     const { item, odd, selected, onSelect, onDelete } = this.props;
     return (
       <Table.Row odd={odd} selected={selected}
@@ -20,7 +25,7 @@ class BomItem extends Component {
         <td>{item.unit}</td>
         <td className="number">
           <Editable ref="qty" value={(item.qty || 0).toString()}
-            onUpdate={::this.handleQtyUpdate} />
+            onUpdate={this.handleQtyUpdate.bind(this)} />
         </td>
         <td>{item.misc}</td>
         <td>
@@ -54,11 +59,17 @@ class BomItemList extends Component {
             <i className="fa fa-plus" ref="add" onClick={onAddNew} />
           </div>
         </div>
+        <Table>
+          <thead>
+            <tr>{COL_HEADS.map((col, idx) =>
+              <th key={idx} style={COL_SIZES[idx]}>{col}</th>)}</tr>
+          </thead>
+        </Table>
         <div className="list">
-          <Table striped={true}>
-            <thead>
-              <tr>{COL_HEADS.map((col, idx) => <th key={idx}>{col}</th>)}</tr>
-            </thead>
+          <Table>
+            <colgroup>
+              {COL_SIZES.map((style, idx) => <col key={idx} style={style} />)}
+            </colgroup>
             <tbody>
               {items.map((item, idx) =>
                 <BomItem key={idx} item={item}

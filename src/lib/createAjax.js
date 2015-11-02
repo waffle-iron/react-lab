@@ -1,17 +1,26 @@
-import request from 'superagent-bluebird-promise';
+import Promise from 'bluebird';
+import request from 'superagent';
 
-const _errorHandler = e => console.warn(
-  'Please start API service by command "npm run data"', e);
+const _tips = () => console.warn(
+  'Please start API service by command "npm run data"');
 
 function get(url) {
-  return request.get(url)
-    .promise()
-    .error(_errorHandler)
-    .then(r => JSON.parse(r.text));
+  return new Promise(function(resolve, reject) {
+    request.get(url)
+      .end((e, r) => {
+        if (e) {
+          _tips();
+          reject(e);
+        }
+        else {
+          resolve(JSON.parse(r.text));
+        }
+      });
+  });
 }
 
-export default function createAjax(url) {
+export default function createAjax(urlBase) {
   return {
-    get: uri => get(url + uri)
-  };
-}
+    get: uri => get(urlBase + uri)
+  }
+};
