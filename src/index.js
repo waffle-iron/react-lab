@@ -1,21 +1,20 @@
 import './theme';
 
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore, createDebugPanel } from 'createStore';
 
 import App from './app/app';
-import storeStateReducer from './app/appReducer';
 
-const store = createStore(storeStateReducer);
-
-ReactDOM.render(
-  <div>
-    <Provider store={store}>
+import { configStore, getDevTools } from './lib/createStore';
+const store = configStore();
+const DevTools = getDevTools();
+render(
+  <Provider store={store}>
+    <div>
       <App renderOnly />
-    </Provider>
-    {createDebugPanel(store)}
-  </div>,
+      <DevTools />
+    </div>
+  </Provider>,
   document.getElementById('root')
 );

@@ -91,6 +91,7 @@ function items(state = [], action) {
 function altItems(state = [], action) {
   switch (action.type) {
   case Actions.ITEM_SELECT:
+    console.log(action);
     return action.item.alts;
   case Actions.ITEM_ALT_TOGGLE:
     const altItem = state[action.idx];

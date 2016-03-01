@@ -6,6 +6,6 @@ import Footer from '../Footer';
 describe('Footer', () => {
   it('render', () => {
     const h = ReactDOMServer.renderToStaticMarkup(<Footer />);
-    h.should.be.equal('<div class="footer">© 2015 Zenith China Inc.</div>');
+    h.should.be.equal('<div class="footer">© 2016 Zenith China Inc.</div>');
   });
 });

@@ -1,0 +1,79 @@
+Front-end
+===
+
+object-assign \
+graceful-fs \
+fs-extra \
+bluebird \
+superagent \
+
+less \
+jsdom \
+
+babel-core \
+babel-preset-es2015 \
+babel-preset-react \
+babel-preset-stage-2 \
+
+webpack \
+webpack-dev-server \
+babel-loader \
+style-loader \
+css-loader \
+less-loader \
+file-loader \
+
+react \
+react-addons-pure-render-mixin \
+react-addons-test-utils \
+react-addons-update \
+react-dom \
+react-hot-loader \
+react-redux \
+redux \
+redux-devtools \
+redux-thunk \
+reselect \
+classnames \
+
+chai \
+mocha \
+sinon \
+enzyme \
+isparta \
+istanbul \
+selenium-webdriver \
+
+
+Back-end
+===
+
+shortid \
+read-chunk \
+
+express \
+cors \
+body-parser \
+cookie-parser \
+compression \
+nunjucks \
+
+file-type \
+bunyan \
+kerberos \
+nodemailer \
+
+mongoose \
+morgan \
+
+socket.io \
+socket.io-stream \
+
+## Build
+uglify-js \
+eslint \
+eslint-config-standard \
+eslint-plugin-standard \
+
+## Runner \
+nodemon \
